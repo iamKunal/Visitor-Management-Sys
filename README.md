@@ -1,1 +1,1 @@
-# Visitor-Management-Sys
+Example code for Webcam and Image Capture.

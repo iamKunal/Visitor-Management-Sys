@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="400.0" minWidth="600.0" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.111" fx:controller="VisMan.MainController">
+   <children>
+      <VBox alignment="CENTER" layoutX="91.0" layoutY="11.0" maxWidth="1.7976931348623157E308" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label styleClass="heading" text="Visitor Management system" />
+            <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <RadioButton mnemonicParsing="false" text="Checkin">
+                           <toggleGroup>
+                              <ToggleGroup fx:id="check" />
+                           </toggleGroup></RadioButton>
+                        <VBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="400.0" prefHeight="200.0">
+                           <children>
+                              <RadioButton mnemonicParsing="false" text="New User">
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="user" />
+                                 </toggleGroup></RadioButton>
+                              <RadioButton mnemonicParsing="false" text="Old User" toggleGroup="$user" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <RadioButton mnemonicParsing="false" text="Checkout" toggleGroup="$check" />
+               </children>
+            </VBox>
+            <Button fx:id="goButton" disable="true" mnemonicParsing="false" onAction="#submitGo" prefHeight="50.0" prefWidth="100.0" text="Go" />
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

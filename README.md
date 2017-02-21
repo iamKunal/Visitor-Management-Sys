@@ -1,1 +1,1 @@
-Example code for Webcam and Image Capture.
+Visitor Management System for IIT Indore

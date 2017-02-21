@@ -56,6 +56,8 @@ public class MainController implements Initializable {
 				if(getToggleText(user).equals("null") && visibleValue){
 					goButton.setDisable(true);
 				}
+				if(!visibleValue)
+					goButton.setDisable(visibleValue);
 			}
 		});
 		user.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {@Override

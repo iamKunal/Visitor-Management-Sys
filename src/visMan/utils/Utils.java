@@ -1,4 +1,5 @@
-package it.polito.elite.teaching.cv.utils;
+package visMan.utils;
+
 
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferByte;
@@ -11,6 +12,9 @@ import org.opencv.imgcodecs.Imgcodecs;
 import javafx.application.Platform;
 import javafx.beans.property.ObjectProperty;
 import javafx.embed.swing.SwingFXUtils;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.Toggle;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 
 /**
@@ -25,6 +29,20 @@ import javafx.scene.image.Image;
  */
 public final class Utils
 {
+	
+	public static String getToggleText(ToggleGroup t){
+		try{
+		return ((RadioButton)t.getSelectedToggle()).getText();
+		}
+		catch(Exception e){
+			return "null";
+		}
+		
+	}
+	public static String getToggleText(Toggle t){
+		return getToggleText(t.getToggleGroup());
+	}
+	
 	/**
 	 * Convert a Mat object (OpenCV) in the corresponding Image for JavaFX
 	 *
@@ -77,6 +95,7 @@ public final class Utils
 		if (original.channels() > 1)
 		{
 			image = new BufferedImage(width, height, BufferedImage.TYPE_3BYTE_BGR);
+			
 		}
 		else
 		{

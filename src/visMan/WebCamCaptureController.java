@@ -1,4 +1,14 @@
-package it.polito.elite.teaching.cv;
+package visMan;
+
+import visMan.utils.*;
+
+import javafx.scene.control.Button;
+
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.image.ImageView;
+
+import javafx.scene.input.MouseEvent;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -15,7 +25,7 @@ import org.opencv.videoio.VideoCapture;
 import java.awt.image.BufferedImage;
 import java.io.File;
 
-import it.polito.elite.teaching.cv.utils.Utils;
+import javafx.application.Platform;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -24,19 +34,16 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 /**
  * The controller for our application, where the application logic is
  * implemented. It handles the button for starting/stopping the camera and the
  * acquired video stream.
  *
- * @author <a href="mailto:luigi.derussis@polito.it">Luigi De Russis</a>
- * @author <a href="http://max-z.de">Maximilian Zuleger</a> (minor fixes)
- * @version 2.0 (2016-09-17)
- * @since 1.0 (2013-10-20)
  *
  */
-public class FXHelloCVController implements Initializable
+public class WebCamCaptureController implements Initializable
 {
 	// the FXML button
 	@FXML
@@ -44,7 +51,6 @@ public class FXHelloCVController implements Initializable
 	// the FXML image view
 	@FXML
 	private ImageView currentFrame;
-	
 	// a timer for acquiring the video stream
 	private ScheduledExecutorService timer;
 	// the OpenCV object that realizes the video capture
@@ -117,7 +123,6 @@ public class FXHelloCVController implements Initializable
 	}
 	@FXML
 	protected void captureit() throws Exception{
-		System.out.println("Hello");
 		Image img = startCamera(new ActionEvent());
 //		img = new Image("file://D:/Java/workspace/getting-started/FXHelloCV/temp_2.png", 300,480,false, true);
 		File ofile = new File("./temp.png");
@@ -136,8 +141,10 @@ public class FXHelloCVController implements Initializable
 //		}
 		Process process = new ProcessBuilder("python", "-c", "\"import numpy; from PIL import Image; ((Image.open('temp.png')).crop((0, 0, 400, 480))).save('temp.jpg',quality=30)\"").start();
 //		Process process = new ProcessBuilder("python", "crop.py").start();
+		this.stopAcquisition();
+		this.capture.release();
         Stage currentStage = (Stage) currentFrame.getScene().getWindow();
-        currentStage.close();   
+        currentStage.close();
 	}
 	/**
 	 * Get a frame from the opened video stream (if any)
@@ -223,7 +230,7 @@ public class FXHelloCVController implements Initializable
 	}
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		startCamera(new ActionEvent());		
+		startCamera(new ActionEvent());
 	}
 	
 }

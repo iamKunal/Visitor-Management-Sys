@@ -1,4 +1,4 @@
-package it.polito.elite.teaching.cv;
+package visMan.utils;
 
 import javafx.application.Application;
 import javafx.scene.Scene;

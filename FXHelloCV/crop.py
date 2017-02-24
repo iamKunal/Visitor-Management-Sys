@@ -1,1 +1,0 @@
-import numpy; from PIL import Image; ((Image.open('temp.png')).crop((0, 0, 400, 480))).save('temp.jpg',quality=30)

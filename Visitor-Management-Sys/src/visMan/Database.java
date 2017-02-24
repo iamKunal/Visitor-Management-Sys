@@ -1,4 +1,4 @@
-package VisMan;
+package visMan;
 import java.sql.*;
 public class Database {
    static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";  

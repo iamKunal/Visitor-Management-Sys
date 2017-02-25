@@ -12,10 +12,18 @@ import org.opencv.imgcodecs.Imgcodecs;
 import javafx.application.Platform;
 import javafx.beans.property.ObjectProperty;
 import javafx.embed.swing.SwingFXUtils;
+import javafx.print.PageLayout;
+import javafx.print.PageOrientation;
+import javafx.print.Paper;
+import javafx.print.Printer;
+import javafx.print.Printer.MarginType;
+import javafx.print.PrinterJob;
+import javafx.scene.Node;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
+import javafx.scene.transform.Scale;
 
 /**
  * Provide general purpose methods for handling OpenCV-JavaFX data conversion.
@@ -29,7 +37,44 @@ import javafx.scene.image.Image;
  */
 public final class Utils
 {
-	
+	public static String toTitleCase(String input) {
+	    StringBuilder titleCase = new StringBuilder();
+	    boolean nextTitleCase = true;
+
+	    for (char c : input.toCharArray()) {
+	        if (Character.isSpaceChar(c)) {
+	            nextTitleCase = true;
+	        } else if (nextTitleCase) {
+	            c = Character.toTitleCase(c);
+	            nextTitleCase = false;
+	        }
+
+	        titleCase.append(c);
+	    }
+
+	    return titleCase.toString();
+	}
+	public static void print(Node node, Paper paper){
+//		double conversionFactor = 60624/(8.27);
+//		double pHeight= paper.getHeight();
+//		System.out.println("a" + pHeight);
+		Printer printer = Printer.getDefaultPrinter();
+		PageLayout pageLayout = printer.createPageLayout(paper, PageOrientation.PORTRAIT, 54,54,54,54);
+//		double dpi = pageLayout.getPrintableHeight()/pHeight;
+//		System.out.println(pageLayout.getPrintableHeight());
+//		double marginIn = 1.5;
+//		double marginPx = dpi*marginIn;
+//		System.out.println(pageLayout.getLeftMargin());
+		double scaleX = (pageLayout.getPrintableWidth() ) / node.getBoundsInParent().getWidth();
+        double scaleY = (pageLayout.getPrintableHeight() ) / node.getBoundsInParent().getHeight();
+        node.getTransforms().add(new Scale(scaleX, scaleY));
+		PrinterJob printerJob = PrinterJob.createPrinterJob();
+		if(printerJob.printPage(node))
+			   printerJob.endJob();
+		scaleX = 1/scaleX;
+		scaleY = 1/scaleY;
+        node.getTransforms().add(new Scale(scaleX, scaleY));
+	}
 	public static String getToggleText(ToggleGroup t){
 		try{
 		return ((RadioButton)t.getSelectedToggle()).getText();

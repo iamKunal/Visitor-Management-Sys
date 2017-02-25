@@ -4,10 +4,16 @@ import javafx.fxml.FXML;
 
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.print.PageLayout;
+import javafx.print.PageOrientation;
+import javafx.print.Paper;
+import javafx.print.Printer;
+import javafx.print.PrinterJob;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
@@ -17,6 +23,7 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
+import java.util.Arrays;
 import java.util.ResourceBundle;
 
 import javafx.application.Platform;
@@ -27,11 +34,17 @@ import javafx.event.EventHandler;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.transform.Scale;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.stage.WindowEvent;
 import visMan.utils.Utils;
 
 public class NewUserController implements Initializable {
+	@FXML
+	AnchorPane newUserRoot;
 	@FXML
 	private TextField nameField;
 	@FXML
@@ -54,6 +67,7 @@ public class NewUserController implements Initializable {
 	private Button reviewButton;
 	@FXML
 	private Button cancelButton;
+	public static Stage openStage=null;
 	private void checkValues(){
 		boolean correct=true;
 		correct&=(!nameField.getText().trim().isEmpty());
@@ -63,23 +77,31 @@ public class NewUserController implements Initializable {
 		correct&=(!addressField.getText().trim().isEmpty());
 		correct&=(!Utils.getToggleText(category).equals("null"));
 		correct&=(!purposeField.getText().trim().isEmpty());
-		correct&=!(userImage.getImage()==null);
+		try{
+		correct&=!(userImage.getImage().getHeight()==0);
+		}
+		catch (Exception e) {
+			correct=false;
+			// TODO: handle exception
+		}
 		reviewButton.setDisable(!correct);
 	}
 	// Event Listener on Button[#captureButton].onAction
 	@FXML
 	public void openCaptureWindow(ActionEvent event) throws Exception {
+
+        newUserRoot.setDisable(true);
 		{
         FXMLLoader loader = new FXMLLoader(getClass().getResource("WebCamCapture.fxml"));
         Parent webCamRoot = (Parent) loader.load();
         Scene newUser = new Scene(webCamRoot,400,600);
         WebCamCaptureController controller = (WebCamCaptureController) loader.getController();
 //        control.initData(selectedSong);
-        Stage stager = new Stage();
-        stager.setScene(newUser);
-        stager.setResizable(false);
-        stager.setTitle("Checkin New User");
-//        stager.setOnHiding(new EventHandler<WindowEvent>() {
+        openStage = new Stage();
+        openStage.setScene(newUser);
+        openStage.setResizable(false);
+        openStage.setTitle("Checkin New User");
+//        openStage.setOnHiding(new EventHandler<WindowEvent>() {
 //
 //            @Override
 //            public void handle(WindowEvent event) {
@@ -87,13 +109,16 @@ public class NewUserController implements Initializable {
 //
 //                    @Override
 //                    public void run() {
-//                        System.out.println("Hi");
+//                    	newUserRoot.setDisable(false);
 //                    }
 //                });
 //            }
 //        });
-        stager.showAndWait();
+        openStage.showAndWait();
 		}
+		openStage=null;
+
+        newUserRoot.setDisable(false);
 		try{
 	        File file = new File("temp.png");
 	        Image image = new Image(file.toURI().toString());
@@ -103,30 +128,69 @@ public class NewUserController implements Initializable {
 //			System.out.println("Image not present");
 			;
 		}
+		reviewButton.requestFocus();
 		
 	}
 	// Event Listener on Button[#reviewButton].onAction
 	@FXML
 	public void reviewAndPrint(ActionEvent event) {
+        Stage currentStage = (Stage) cancelButton.getScene().getWindow();
 		Visitor newVisitor = new Visitor(nameField.getText(), gender, contactField.getText(), dateOfBirth.getValue().toString(), addressField.getText(), category, purposeField.getText());
-		System.out.println(newVisitor);
+//		System.out.println(newVisitor);
+
+        newUserRoot.setDisable(true);
+		try
+		{
+			// load the FXML resource
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("PrintUserCard.fxml"));
+            Parent userCardRoot = (Parent) loader.load();
+            Scene userCard = new Scene(userCardRoot);
+            PrintUserCardController controller = (PrintUserCardController) loader.getController();
+//                control.initData(selectedSong);
+            Stage stager = new Stage();
+            controller.initData(newVisitor);
+            stager.setScene(userCard);
+            stager.initStyle(StageStyle.UNDECORATED);
+//            stager.setResizable(false);
+//			stager.setOnHiding((new EventHandler<WindowEvent>() {
+//				public void handle(WindowEvent we)
+//				{
+//			        mainRoot.setDisable(false);
+//				}
+//			}));
+            stager.setTitle("Print Card");
+            stager.showAndWait();
+            reviewButton.requestFocus();
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
 		//DB.insert(newVisitor);
+
+        newUserRoot.setDisable(false);
 	}
 	// Event Listener on Button[#cancelButton].onAction
 	@FXML
 	public void cancelExecute(ActionEvent event) {
         Stage currentStage = (Stage) cancelButton.getScene().getWindow();
+//        if(openStage!=null){
+//        	openStage.close();
+//        	openStage=null;
+//        }
         currentStage.close();
 	}
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		PrintUserCardController.insertedInDB=false;
 		nameField.textProperty().addListener(new ChangeListener<String>() {
 			@Override
 			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
 				if(!newValue.isEmpty()){
 					String newString = newValue.substring(newValue.indexOf(newValue.trim()));
 					newString = newString.replaceAll("  ", " ");
-					nameField.setText(newString);
+					
+					nameField.setText(Utils.toTitleCase(newString));
 				}
 			checkValues();
 			}
@@ -152,11 +216,20 @@ public class NewUserController implements Initializable {
 				if(!newValue.isEmpty()){
 					String nv="";
 					String ov[] = newValue.split("\n", -1);
-					for (int i = 0; i < ov.length; i++) {
+					int n=ov.length;
+					if(n>3)
+						n=3;
+					for (int i = 0; i < n; i++) {
 						ov[i] = ov[i].substring(ov[i].indexOf(ov[i].trim()));
 						while(ov[i].contains("  "))
 							ov[i] = ov[i].replaceAll("  ", " ");
+						if(ov[i].contains("\t")){
+							ov[i] = ov[i].replaceAll("\\t*", "");
+							RadioButton b =  (RadioButton)category.getToggles().get(0);
+							b.requestFocus();
+						}
 					}
+					ov=Arrays.copyOfRange(ov, 0, n);
 					nv=String.join("\n", ov);
 					while(nv.contains("\n\n"))
 						nv=nv.replaceAll("\n\n", "\n");

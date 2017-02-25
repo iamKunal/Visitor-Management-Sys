@@ -2,6 +2,7 @@ package visMan;
 
 import visMan.utils.Utils;
 
+import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -17,9 +18,16 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.stage.WindowEvent;
 
 public class MainController implements Initializable {
+	public void deleteTempData(){
+        File tempFile = new File("temp.jpg");
+        tempFile.delete();
+        tempFile = new File("temp.png");
+        tempFile.delete();
+	}
 	@FXML VBox mainRoot;
 	@FXML Button goButton;
 	@FXML
@@ -38,12 +46,28 @@ public class MainController implements Initializable {
 	//                control.initData(selectedSong);
 	                Stage stager = new Stage();
 	                stager.setScene(newUser);
+//	                stager.initStyle(StageStyle.UNDECORATED);
+	                stager.setResizable(false);
 	    			stager.setOnHiding((new EventHandler<WindowEvent>() {
 	    				public void handle(WindowEvent we)
 	    				{
 	    			        mainRoot.setDisable(false);
+//	    			        if(NewUserController.openStage!=null){
+//	    			        	NewUserController.openStage.close();
+//	    			        	NewUserController.openStage=null;
+//	    			        }
 	    				}
 	    			}));
+//	    			stager.setOnCloseRequest((new EventHandler<WindowEvent>() {
+//	    				public void handle(WindowEvent we)
+//	    				{
+//	    			        mainRoot.setDisable(false);
+//	    			        if(NewUserController.openStage!=null){
+//	    			        	NewUserController.openStage.close();
+//	    			        	NewUserController.openStage=null;
+//	    			        }
+//	    				}
+//	    			}));
 	                stager.setTitle("Checkin New User");
 	                stager.showAndWait();
 	    		}
@@ -53,6 +77,9 @@ public class MainController implements Initializable {
 	    		}
         	}
         }
+
+        mainRoot.setDisable(false);
+        deleteTempData();
 		
 	}
 	@FXML ToggleGroup user;
@@ -60,7 +87,7 @@ public class MainController implements Initializable {
 
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
-		
+		deleteTempData();
 		/*---------------------Initalizations--------------------------------------------*/
 		for(Toggle rb : user.getToggles()){
 			RadioButton r = (RadioButton) rb;

@@ -1,22 +1,14 @@
 package visMan.database;
 import java.sql.*;
-public class Database {
-   static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";  
-   static final String DB_URL = "jdbc:mysql://localhost/";
-   static final String USER = "root";
-   static final String PASS = "toor";
-   
+public class Database extends CreateConnection{
    public static void main(String[] args) {
-   Connection conn = null;
    Statement stmt = null;
    try{
-      Class.forName(JDBC_DRIVER);
-      conn = DriverManager.getConnection(DB_URL, USER, PASS);
       stmt = conn.createStatement();
       String sql = "CREATE DATABASE if not exists VisitorManagement";
       stmt.execute(sql);
       stmt.execute("use VisitorManagement");
-       sql = "CREATE TABLE if not exists securityOfficials " +
+       /*sql = "CREATE TABLE if not exists securityOfficials " +
               "(sid int not NULL primary key, " +
               " name varchar(255) not null, " + 
               " address varchar(255)not null, " + 
@@ -44,18 +36,19 @@ public class Database {
                  " password varchar(64)not null," +
                  "foreign key(adid) references admin(adid))";
           stmt.execute(sql);
-          
+         */ 
           sql = "CREATE TABLE if not exists userinfo " +
-                  "(uid int not NULL primary key, " +
+                  "(uid int not NULL primary key AUTO_INCREMENT, " +
                   " name varchar(255) not null, " + 
+                  "gender varchar(1) not null," +
+                  "contact varchar(10) not null," +
+                  "DateOfBirth date not null,"+
                   " address varchar(255)not null," +
-                  "gender varchar(255) not null," +
-                  "firstVisit timestamp DEFAULT CURRENT_TIMESTAMP," +
+                  "category varchar(1) not null)," +
+          		  "firstVisit timestamp DEFAULT CURRENT_TIMESTAMP," +
                   "lastVisit timestamp DEFAULT CURRENT_TIMESTAMP," +
-                  "contact_no varchar(10) not null," +
-                  "purposeOfVisit varchar(255)not null," +
-                  "noOfVisits int not null default 1," +
-                  "category varchar(255) not null)";
+                  "noOfVisits int not null default 1)" +
+                  
               
            stmt.execute(sql);
    
@@ -67,15 +60,6 @@ public class Database {
                    "outTimestamp timestamp default 0," +
                    "FOREIGN KEY(uid) REFERENCES userinfo(uid))";
                    
-            stmt.execute(sql);
-            
-            sql="create trigger after_insert_userinfo after insert " +
-            	"on userinfo "+
-            	"for each row "+
-            	"begin "+
-            	"insert into report values (NEW.uid,NEW.name,NEW.purposeOfVisit,NEW.firstVisit,0);"+
-            	"end";
-            	
             stmt.execute(sql);
    }
    catch(Exception e){ 

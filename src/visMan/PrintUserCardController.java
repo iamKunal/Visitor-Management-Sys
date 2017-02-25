@@ -4,7 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.print.Paper;
 import javafx.scene.control.Button;
-
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.SplitPane;
 
 import java.io.File;
@@ -39,7 +39,11 @@ public class PrintUserCardController implements Initializable{
 	@FXML
 	private Label uidField;
 	@FXML
+	private Label categoryField;
+	@FXML
 	private ImageView visitorImage;
+	@FXML
+	private ChoiceBox paperSize;
 	@FXML
 	private Button printButton;
 	@FXML
@@ -52,7 +56,7 @@ public class PrintUserCardController implements Initializable{
 		//Insert in db  if variable false and then set variable true
 		//Generate UID and Print in any case of variable
 		SplitPane printRegion = new SplitPane(printableRegionRoot);
-		Utils.print(printableRegionRoot, Paper.A4);
+		Utils.print(printableRegionRoot, (Paper)paperSize.getValue());
 		cancelGoBack(new ActionEvent());
 	}
 	// Event Listener on Button[#cancelButton].onAction
@@ -63,6 +67,9 @@ public class PrintUserCardController implements Initializable{
 	}
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		paperSize.getItems().addAll(Paper.A4,Paper.A6);
+		paperSize.getSelectionModel().selectFirst();
+//		printButton.requestFocus();
 		// TODO Auto-generated method stub
 		
 	}
@@ -89,5 +96,21 @@ public class PrintUserCardController implements Initializable{
 			ageField.setText(ChronoUnit.DAYS.between(dob,localDate) + " days");
 		purposeField.setText(visitor.getPurpose());
 		uidField.setText("UID : "+visitor.getuID());
+		String category = visitor.getCategory();
+		switch (category) {
+		case "C":
+			category="Casual";			
+			break;
+		case "V":
+			category="Vendor";
+			break;
+		case "O":
+			category="Others";
+			break;
+		default:
+			break;
+		}
+		categoryField.setText("Category : " + category);
+		printButton.requestFocus();
 	}
 }

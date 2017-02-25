@@ -42,6 +42,7 @@ public class MainController implements Initializable {
 	                FXMLLoader loader = new FXMLLoader(getClass().getResource("NewUser.fxml"));
 	                Parent newUserRoot = (Parent) loader.load();
 	                Scene newUser = new Scene(newUserRoot);
+	    			newUser.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 	                NewUserController controller = (NewUserController) loader.getController();
 	//                control.initData(selectedSong);
 	                Stage stager = new Stage();

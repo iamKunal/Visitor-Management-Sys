@@ -145,6 +145,7 @@ public class NewUserController implements Initializable {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("PrintUserCard.fxml"));
             Parent userCardRoot = (Parent) loader.load();
             Scene userCard = new Scene(userCardRoot);
+			userCard.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
             PrintUserCardController controller = (PrintUserCardController) loader.getController();
 //                control.initData(selectedSong);
             Stage stager = new Stage();

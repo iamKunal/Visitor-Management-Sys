@@ -43,9 +43,15 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Label text="Name" />
+                        <Label text="Name">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font></Label>
                         <TextField fx:id="nameField" promptText="Enter name..." GridPane.columnIndex="2" />
-                        <Label text="Gender" GridPane.rowIndex="1" />
+                        <Label text="Gender" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font></Label>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="50.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
                            <children>
                               <RadioButton id="genderButton" mnemonicParsing="false" text="Male">
@@ -56,14 +62,29 @@
                               <RadioButton mnemonicParsing="false" text="Female" toggleGroup="$gender" />
                            </children>
                         </HBox>
-                        <Label text="Contact Number" GridPane.rowIndex="2" />
+                        <Label text="Contact Number" GridPane.rowIndex="2">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font></Label>
                         <TextField fx:id="contactField" promptText="Enter Contact Number..." GridPane.columnIndex="2" GridPane.rowIndex="2" />
                         <DatePicker fx:id="dateOfBirth" maxWidth="1.7976931348623157E308" promptText="01/01/1990" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-                        <Label text="Date of Birth" GridPane.rowIndex="3" />
-                        <Label text="Address" GridPane.rowIndex="4" />
+                        <Label text="Date of Birth" GridPane.rowIndex="3">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font></Label>
+                        <Label text="Address" GridPane.rowIndex="4">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font></Label>
                         <TextArea fx:id="addressField" prefHeight="200.0" prefWidth="200.0" promptText="Enter Address..." wrapText="true" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-                        <Label text="Category" GridPane.rowIndex="5" />
-                        <Label text="Purpose of Visit" GridPane.rowIndex="6" />
+                        <Label text="Category" GridPane.rowIndex="5">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font></Label>
+                        <Label text="Purpose of Visit" GridPane.rowIndex="6">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font></Label>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="50.0" GridPane.columnIndex="2" GridPane.rowIndex="5">
                            <children>
                               <RadioButton mnemonicParsing="false" text="Casual">

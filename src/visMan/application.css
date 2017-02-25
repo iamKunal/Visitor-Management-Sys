@@ -15,6 +15,11 @@ Label{
 	-fx-padding : 10px;
 }
 #imageStackPane{
-	-fx-border-style : solid ;
+	-fx-border-style : solid;
+	-fx-border-color : black;
+	-fx-background-color: #AAAAAA;
 	-fx-border-width: 1px;
+}
+SplitPane{
+	-fx-background-color: white;
 }

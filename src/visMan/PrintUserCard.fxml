@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.SplitPane?>
@@ -26,9 +27,9 @@
                      <children>
                         <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <center>
-                              <GridPane>
+                              <GridPane alignment="CENTER">
                                 <columnConstraints>
-                                  <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="240.0" />
+                                  <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="200.0" />
                                   <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="240.0" />
                                 </columnConstraints>
                                 <rowConstraints>
@@ -38,22 +39,34 @@
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                 </rowConstraints>
                                  <children>
-                                    <Label text="Name :" />
+                                    <Label text="Name :">
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font></Label>
                                     <Label fx:id="nameField" text="name" GridPane.columnIndex="1">
                                        <GridPane.margin>
                                           <Insets left="5.0" />
                                        </GridPane.margin></Label>
-                                    <Label text="Age :" GridPane.rowIndex="1" />
+                                    <Label text="Age :" GridPane.rowIndex="1">
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font></Label>
                                     <Label fx:id="ageField" text="age" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                        <GridPane.margin>
                                           <Insets left="5.0" />
                                        </GridPane.margin></Label>
-                                    <Label text="Contact Number :" GridPane.rowIndex="2" />
+                                    <Label text="Contact Number :" GridPane.rowIndex="2">
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font></Label>
                                     <Label fx:id="contactField" text="contact" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                        <GridPane.margin>
                                           <Insets left="5.0" />
                                        </GridPane.margin></Label>
-                                    <Label text="Purpose of Visit :" GridPane.rowIndex="3" />
+                                    <Label text="Purpose of Visit :" GridPane.rowIndex="3">
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font></Label>
                                     <Label fx:id="purposeField" text="purpose" GridPane.columnIndex="1" GridPane.rowIndex="3">
                                        <GridPane.margin>
                                           <Insets left="5.0" />
@@ -74,18 +87,23 @@
                                           <Insets top="2.0" />
                                        </VBox.margin>
                                     </Separator>
-                                    <Label fx:id="uidField" text="UID : " />
+                                    <HBox alignment="CENTER" spacing="30.0">
+                                       <children>
+                                          <Label fx:id="uidField" text="UID : " />
+                                          <Label fx:id="categoryField" text="Category : " />
+                                       </children>
+                                    </HBox>
                                     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                                        <children>
                                           <Label alignment="CENTER" contentDisplay="CENTER" rotate="270.0" text="Visitor Card">
                                              <font>
-                                                <Font size="20.0" />
+                                                <Font name="System Bold Italic" size="20.0" />
                                              </font>
                                           </Label>
                                           <ImageView fx:id="visitorImage" fitHeight="144.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true" />
                                           <Label alignment="CENTER" contentDisplay="CENTER" rotate="90.0" text="Visitor Card">
                                              <font>
-                                                <Font size="20.0" />
+                                                <Font name="System Bold Italic" size="20.0" />
                                              </font>
                                           </Label>
                                        </children>
@@ -101,8 +119,9 @@
             </SplitPane>
          </center>
          <right>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="40.0" BorderPane.alignment="CENTER">
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="150.0" spacing="40.0" BorderPane.alignment="CENTER">
                <children>
+                  <ChoiceBox fx:id="paperSize" maxWidth="125.0" pickOnBounds="false" prefWidth="125.0" />
                   <Button fx:id="printButton" minWidth="80.0" mnemonicParsing="false" onAction="#printCard" text="Print" />
                   <Button fx:id="cancelButton" minWidth="80.0" mnemonicParsing="false" onAction="#cancelGoBack" text="Cancel" />
                </children>

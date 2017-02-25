@@ -5,12 +5,12 @@ import visMan.utils.Utils;
 
 public class Visitor {
 	final String SEP=" - ";
-	private String uID;
+	private int uID;
 	private String name, gender,contact,dateOfBirth,address,category,purpose;
-	public String getuID() {
+	public int getuID() {
 		return uID;
 	}
-	public void setuID(String uID) {
+	public void setuID(int uID) {
 		this.uID = uID;
 	}
 	public String getName() {
@@ -61,7 +61,11 @@ public class Visitor {
 	public void setPurpose(String purpose) {
 		this.purpose = purpose.trim();
 	}
-	public Visitor(String uID, String name, String gender, String contact, String dateOfBirth, String address, String category,
+	public Visitor(){
+		this.uID=0;
+		this.name=this.gender=this.contact=this.dateOfBirth=this.address=this.category=this.purpose="";
+	}
+	public Visitor(int uID, String name, String gender, String contact, String dateOfBirth, String address, String category,
 			String purpose) {
 		setuID(uID);
 		setName(name);
@@ -72,7 +76,7 @@ public class Visitor {
 		setCategory(category);
 		setPurpose(purpose);
 	}
-	public Visitor(String uID, String name, ToggleGroup gender, String contact, String dateOfBirth, String address, ToggleGroup category,
+	public Visitor(int uID, String name, ToggleGroup gender, String contact, String dateOfBirth, String address, ToggleGroup category,
 			String purpose) {
 		setuID(uID);
 		setName(name);
@@ -85,7 +89,7 @@ public class Visitor {
 	}
 	public Visitor(String name, String gender, String contact, String dateOfBirth, String address, String category,
 			String purpose) {
-		this.uID=null;
+		this.uID=0;
 		setName(name);
 		setGender(gender);
 		setContact(contact);
@@ -96,7 +100,7 @@ public class Visitor {
 	}
 	public Visitor(String name, ToggleGroup gender, String contact, String dateOfBirth, String address, ToggleGroup category,
 			String purpose) {
-		this.uID=null;
+		this.uID=0;
 		setName(name);
 		setGender(gender);
 		setContact(contact);

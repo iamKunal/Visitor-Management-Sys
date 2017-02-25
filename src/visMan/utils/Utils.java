@@ -4,6 +4,8 @@ package visMan.utils;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferByte;
 import java.io.ByteArrayInputStream;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import org.opencv.core.Mat;
 import org.opencv.core.MatOfByte;
@@ -11,6 +13,8 @@ import org.opencv.imgcodecs.Imgcodecs;
 
 import javafx.application.Platform;
 import javafx.beans.property.ObjectProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.print.PageLayout;
 import javafx.print.PageOrientation;
@@ -24,6 +28,7 @@ import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.transform.Scale;
+import visMan.Visitor;
 
 /**
  * Provide general purpose methods for handling OpenCV-JavaFX data conversion.
@@ -150,5 +155,27 @@ public final class Utils
 		System.arraycopy(sourcePixels, 0, targetPixels, 0, sourcePixels.length);
 		
 		return image;
+	}
+	public static Visitor toVisitor(ResultSet res){
+		Visitor visitor=null;
+		try{
+			res.next();
+			visitor = new Visitor(res.getInt(0), res.getString(1), res.getString(2), res.getString(3), res.getString(4), res.getString(5), res.getString(6),res.getString(7));
+			res.close();
+		} catch (SQLException e) {
+			;
+        }
+		return visitor;
+	}
+	public static ObservableList<Visitor> toVisitorList(ResultSet res){
+		ObservableList<Visitor> list = FXCollections.observableArrayList();
+        try {
+            while (res.next()) {
+                list.add(new Visitor(res.getInt(0), res.getString(1), res.getString(2), res.getString(3), res.getString(4), res.getString(5), res.getString(6),res.getString(7)));
+            }
+            res.close();
+        } catch (SQLException e) {
+        }
+        return list;
 	}
 }

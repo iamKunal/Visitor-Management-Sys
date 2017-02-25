@@ -56,7 +56,7 @@ public class Database extends CreateConnection{
                    "(uid int not NULL," +
                    " name varchar(255) not null, " + 
                    " purposeOfVisit varchar(255)not null," +
-                   "inTimestamp timestamp," +
+                   "inTimestamp timestamp DEFAULT CURRENT_TIMESTAMP," +
                    "outTimestamp timestamp default 0," +
                    "FOREIGN KEY(uid) REFERENCES userinfo(uid))";
                    

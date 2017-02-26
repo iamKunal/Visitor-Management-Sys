@@ -71,7 +71,7 @@ public class PrintUserCardController implements Initializable{
 				else{
 					uidField.setText("UID : "+ String.format("%09d", currentVisitor.getuID()));
 					try{
-						Files.copy(Paths.get("temp.jpg"), Paths.get(Main.IMGDB+"/"+currentVisitor.getuID()+".jpg"), StandardCopyOption.REPLACE_EXISTING);
+						Files.copy(Paths.get("temp.jpg"), Paths.get(Main.IMGDB+"/"+String.format("%09d", currentVisitor.getuID())+".jpg"), StandardCopyOption.REPLACE_EXISTING);
 					}
 					catch (Exception e) {
 						// TODO: handle exception
@@ -81,7 +81,7 @@ public class PrintUserCardController implements Initializable{
 			else{
 				uidField.setText("UID : "+ String.format("%09d", tempVisitor.getuID()));
 				try{
-					Files.copy(Paths.get("temp.jpg"), Paths.get(Main.IMGDB+"/"+tempVisitor.getuID()+".jpg"), StandardCopyOption.REPLACE_EXISTING);
+					Files.copy(Paths.get("temp.jpg"), Paths.get(Main.IMGDB+"/"+String.format("%09d", tempVisitor.getuID())+".jpg"), StandardCopyOption.REPLACE_EXISTING);
 				}
 				catch (Exception e) {
 					// TODO: handle exception

@@ -17,6 +17,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.stage.WindowEvent;
@@ -37,7 +38,6 @@ public class MainController implements Initializable {
 	@FXML
 	void submitGo(){
 		System.out.println(Utils.getToggleText(check) + " " + Utils.getToggleText(user));
-        mainRoot.setDisable(true);
         if(Utils.getToggleText(check).equals("Checkin")){
         	if(Utils.getToggleText(user).equals("New User")){
         		try
@@ -53,6 +53,8 @@ public class MainController implements Initializable {
 	                stager.setScene(newUser);
 //	                stager.initStyle(StageStyle.UNDECORATED);
 	                stager.setResizable(false);
+	                stager.initModality(Modality.WINDOW_MODAL);
+	                stager.initOwner(goButton.getScene().getWindow());
 	    			stager.setOnHiding((new EventHandler<WindowEvent>() {
 	    				public void handle(WindowEvent we)
 	    				{
@@ -81,9 +83,52 @@ public class MainController implements Initializable {
 	    			e.printStackTrace();
 	    		}
         	}
+        	else if(Utils.getToggleText(user).equals("Old User")){
+        		try
+        		{
+	    			// load the FXML resource
+	                FXMLLoader loader = new FXMLLoader(getClass().getResource("OldUser.fxml"));
+	                Parent oldUserRoot = (Parent) loader.load();
+	                Scene oldUser = new Scene(oldUserRoot);
+	    			oldUser.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+	                OldUserController controller = (OldUserController) loader.getController();
+	//                control.initData(selectedSong);
+	                Stage stager = new Stage();
+	                stager.setScene(oldUser);
+//	                stager.initStyle(StageStyle.UNDECORATED);
+	                stager.setResizable(false);
+	                stager.initModality(Modality.WINDOW_MODAL);
+	                stager.initOwner(goButton.getScene().getWindow());
+	    			stager.setOnHiding((new EventHandler<WindowEvent>() {
+	    				public void handle(WindowEvent we)
+	    				{
+	    			        mainRoot.setDisable(false);
+//	    			        if(NewUserController.openStage!=null){
+//	    			        	NewUserController.openStage.close();
+//	    			        	NewUserController.openStage=null;
+//	    			        }
+	    				}
+	    			}));
+//	    			stager.setOnCloseRequest((new EventHandler<WindowEvent>() {
+//	    				public void handle(WindowEvent we)
+//	    				{
+//	    			        mainRoot.setDisable(false);
+//	    			        if(NewUserController.openStage!=null){
+//	    			        	NewUserController.openStage.close();
+//	    			        	NewUserController.openStage=null;
+//	    			        }
+//	    				}
+//	    			}));
+	                stager.setTitle("Checkin Old User");
+	                stager.showAndWait();
+	    		}
+	    		catch (Exception e)
+	    		{
+	    			e.printStackTrace();
+	    		}
+        	}
         }
 
-        mainRoot.setDisable(false);
         deleteTempData();
 		
 	}

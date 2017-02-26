@@ -53,7 +53,8 @@ public class Database extends CreateConnection{
                   
            stmt.execute(sql);
            sql = "CREATE TABLE if not exists report " +
-                   "(uid int not NULL," +
+                   "(SNo int not NULL primary key AUTO_INCREMENT, " +
+                   "uid int not NULL," +
                    " name varchar(255) not null, " + 
                    " purposeOfVisit varchar(255)not null," +
                    "inTimestamp timestamp DEFAULT CURRENT_TIMESTAMP," +

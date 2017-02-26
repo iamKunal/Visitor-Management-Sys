@@ -23,7 +23,12 @@ public class Visitor {
 		return gender;
 	}
 	public void setGender(String gender) {
+		try{
 		this.gender = gender.substring(0,1).toUpperCase();
+		}
+		catch (Exception e) {
+			this.gender="M";
+		}
 	}
 	public void setGender(ToggleGroup gender){
 		setGender(Utils.getToggleText(gender));
@@ -50,7 +55,12 @@ public class Visitor {
 		return category;
 	}
 	public void setCategory(String category) {
+		try{
 		this.category = category.substring(0,1).toUpperCase();
+		}
+		catch (Exception e) {
+			this.category="O";
+		}
 	}
 	public void setCategory(ToggleGroup category){
 		setCategory(Utils.getToggleText(category));
@@ -71,7 +81,7 @@ public class Visitor {
 		setName(name);
 		setGender(gender);
 		setContact(contact);
-		setDateOfBirth(purpose);
+		setDateOfBirth(dateOfBirth);
 		setAddress(address);
 		setCategory(category);
 		setPurpose(purpose);
@@ -112,5 +122,18 @@ public class Visitor {
 	@Override
 	public String toString() {
 		return name + SEP + gender + SEP + contact + SEP + dateOfBirth + SEP + address + SEP + category + SEP + purpose;
+	}
+	public boolean equals(Visitor visitor){
+		   if (this==visitor) return true;
+		   if (this == null) return false;
+		   if (this.getClass() != visitor.getClass()) return false;
+		   boolean same=true;
+		   same&=(this.uID==visitor.getuID())
+				   & (this.name.equals(visitor.getName()))
+				   & (this.gender.equals(visitor.getGender()))
+				   & (this.contact.equals(visitor.getDateOfBirth()))
+				   & (this.dateOfBirth.equals(visitor.getDateOfBirth()))
+				   & (this.address.equals(visitor.getAddress()));
+		   return same;
 	}
 }

@@ -85,6 +85,49 @@ public class CheckIn extends CreateConnection{
                 }
             }
         }
-	}	
+	}
+	public boolean isCheckedIn(Visitor oldVisitor){
+		PreparedStatement statement = null;
+		try {
+            statement = conn.prepareStatement("select * from report where uid=? and outTimestamp=0");
+            statement.setInt(1, oldVisitor.getuID());
+            ResultSet res = statement.executeQuery();
+            while(res.next()){
+            	return true;
+            }
+        } catch (SQLException e) {
+        	System.out.println("Hello");
+        } finally {
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException e) {
+
+                }
+            }
+        }
+		return false;
+	}
+	public void updateUser(Visitor visitor){
+		PreparedStatement statement = null;
+		try {
+            statement = conn.prepareStatement("update userinfo SET name=?, contact=?, dateofbirth=?, address=? where uid=?");
+            statement.setString(1, visitor.getName().trim());
+            statement.setString(2, visitor.getContact().trim());
+            statement.setString(3, visitor.getDateOfBirth().trim());
+            statement.setString(4, visitor.getAddress().trim());
+            statement.setInt(5, visitor.getuID());
+            statement.execute();
+        } catch (SQLException e) {
+        } finally {
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException e) {
+
+                }
+            }
+        }
+	}
 
 }

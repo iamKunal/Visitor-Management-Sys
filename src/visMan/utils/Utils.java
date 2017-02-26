@@ -156,22 +156,23 @@ public final class Utils
 		
 		return image;
 	}
-	public static Visitor toVisitor(ResultSet res){
-		Visitor visitor=null;
+	public static Visitor toVisitor(ResultSet res) {
+		Visitor visitor;
 		try{
 			res.next();
-			visitor = new Visitor(res.getInt(0), res.getString(1), res.getString(2), res.getString(3), res.getString(4), res.getString(5), res.getString(6),res.getString(7));
+			visitor = new Visitor(res.getInt(1), res.getString(2), res.getString(3), res.getString(4), res.getString(5), res.getString(6), res.getString(7),"");
 			res.close();
+			return visitor;
 		} catch (SQLException e) {
-			;
+//			System.out.println("yo");
         }
-		return visitor;
+		return null;
 	}
 	public static ObservableList<Visitor> toVisitorList(ResultSet res){
 		ObservableList<Visitor> list = FXCollections.observableArrayList();
         try {
             while (res.next()) {
-                list.add(new Visitor(res.getInt(0), res.getString(1), res.getString(2), res.getString(3), res.getString(4), res.getString(5), res.getString(6),res.getString(7)));
+                list.add(new Visitor(res.getInt(1), res.getString(2), res.getString(3), res.getString(4), res.getString(5), res.getString(6), res.getString(7),""));
             }
             res.close();
         } catch (SQLException e) {

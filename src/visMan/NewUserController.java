@@ -125,7 +125,7 @@ public class NewUserController implements Initializable {
 			userImage.setImage(image);
 		}
 		catch (Exception e) {
-//			System.out.println("Image not present");
+			System.out.println("Image not present");
 			;
 		}
 		reviewButton.requestFocus();

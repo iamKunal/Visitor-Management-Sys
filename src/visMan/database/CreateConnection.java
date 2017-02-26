@@ -10,9 +10,16 @@ public class CreateConnection {
     CreateConnection() {
         try {
         	 Class.forName(JDBC_DRIVER);
-             conn = DriverManager.getConnection(DB_URL, USER, PASS);
+             conn = DriverManager.getConnection(DB_URL+"visitormanagement", USER, PASS);
+             
         } catch (Exception e) {
-
+        	try{
+	       	 Class.forName(JDBC_DRIVER);
+	         conn = DriverManager.getConnection(DB_URL, USER, PASS);
+        	}
+        	catch (Exception e1) {
+				// TODO: handle exception
+			}
         }
     }
 }

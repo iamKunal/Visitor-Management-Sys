@@ -1,10 +1,12 @@
 package visMan.database;
 import java.sql.*;
 public class Database extends CreateConnection{
-   public static void main(String[] args) {
+   public Database(){
    Statement stmt = null;
+
    try{
       stmt = conn.createStatement();
+
       String sql = "CREATE DATABASE if not exists VisitorManagement";
       stmt.execute(sql);
       stmt.execute("use VisitorManagement");
@@ -39,19 +41,17 @@ public class Database extends CreateConnection{
          */ 
           sql = "CREATE TABLE if not exists userinfo " +
                   "(uid int not NULL primary key AUTO_INCREMENT, " +
-                  " name varchar(255) not null, " + 
+                  "name varchar(255) not null, " + 
                   "gender varchar(1) not null," +
                   "contact varchar(10) not null," +
-                  "DateOfBirth date not null,"+
+                  "dateOfBirth date not null,"+
                   " address varchar(255)not null," +
-                  "category varchar(1) not null)," +
+                  "category varchar(1) not null," +
           		  "firstVisit timestamp DEFAULT CURRENT_TIMESTAMP," +
                   "lastVisit timestamp DEFAULT CURRENT_TIMESTAMP," +
-                  "noOfVisits int not null default 1)" +
+                  "noOfVisits int not null default 1)";
                   
-              
            stmt.execute(sql);
-   
            sql = "CREATE TABLE if not exists report " +
                    "(uid int not NULL," +
                    " name varchar(255) not null, " + 
@@ -63,7 +63,7 @@ public class Database extends CreateConnection{
             stmt.execute(sql);
    }
    catch(Exception e){ 
-	   ;
+	   System.out.println("Hey");;
    }
 }
 }

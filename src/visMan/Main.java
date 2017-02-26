@@ -7,12 +7,14 @@ import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+import visMan.database.Database;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.fxml.FXMLLoader;
 
 
 public class Main extends Application {
+	public final static String IMGDB="imgdb";
 	@Override
 	public void start(Stage primaryStage) {
 		try {
@@ -43,7 +45,7 @@ public class Main extends Application {
 	public static void main(String[] args) {
 		// load the native OpenCV library
 		System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
-		
+		Database db = new Database();
 		launch(args);
 	}
 }

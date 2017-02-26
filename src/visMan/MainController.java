@@ -27,6 +27,10 @@ public class MainController implements Initializable {
         tempFile.delete();
         tempFile = new File("temp.png");
         tempFile.delete();
+        File directory = new File(String.valueOf(Main.IMGDB));
+        if (! directory.exists()){
+            directory.mkdir();
+        }
 	}
 	@FXML VBox mainRoot;
 	@FXML Button goButton;

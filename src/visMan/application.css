@@ -3,10 +3,6 @@
 	-fx-padding : 0px 100px 0px 100.0px ;
 	-fx-min-width: 100px;
 }
-.heading{
-	-fx-font-family: sans-serif;
-	-fx-font-size: 30px;
-}
 Button{
 	-fx-padding : 5px;
 	-fx-alignment : CENTER;

@@ -223,7 +223,7 @@ public class OldUserController implements Initializable {
 	// Event Listener on Button[#cancelButton].onAction
 	@FXML
 	public void cancelExecute(ActionEvent event) {
-		if(searchUidButton.isDisabled()){
+		if(!uidField.isDisabled()){
 			uidField.setText("");
 			category.selectToggle(null);
 			uidField.setDisable(true);

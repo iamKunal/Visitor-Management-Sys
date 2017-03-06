@@ -167,7 +167,8 @@ public class WebCamCaptureController implements Initializable
 				// if the frame is not empty, process it
 				if (!frame.empty())
 				{
-					Imgproc.cvtColor(frame, frame, Imgproc.COLOR_BGR2GRAY);
+//					Imgproc.cvtColor(frame, frame, Imgproc.COLOR_BGR2RGB); // For Colored Webcam Image to Grayscale
+					;
 				}
 				
 			}

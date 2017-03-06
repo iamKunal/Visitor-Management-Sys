@@ -107,13 +107,14 @@ public class PrintUserCardController implements Initializable{
 					ch.updateUser(currentVisitor);
 					ch.insertReport(currentVisitor);
 				}
-				if (copyImage){
-					try{
-						Files.copy(Paths.get("temp.jpg"), Paths.get(Main.IMGDB+"/"+String.format("%09d", currentVisitor.getuID())+".jpg"), StandardCopyOption.REPLACE_EXISTING);
-					}
-					catch (Exception e) {
-						// TODO: handle exception
-					}
+			}
+
+			if (copyImage){
+				try{
+					Files.copy(Paths.get("temp.jpg"), Paths.get(Main.IMGDB+"/"+String.format("%09d", currentVisitor.getuID())+".jpg"), StandardCopyOption.REPLACE_EXISTING);
+				}
+				catch (Exception e) {
+					// TODO: handle exception
 				}
 			}
 		}
@@ -192,6 +193,7 @@ public class PrintUserCardController implements Initializable{
 				if(!(f.exists() && !f.isDirectory())) { 
 					f = new File(Main.IMGDB + "/" + String.format("%09d", this.currentVisitor.getuID()) +".jpg");
 					copyImage=false;
+					System.out.println("Hello");
 				}
 		        Image image = new Image(f.toURI().toString());
 				this.visitorImage.setImage(image);

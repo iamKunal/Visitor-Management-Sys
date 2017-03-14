@@ -78,7 +78,7 @@ public class OldUserController implements Initializable {
 		correct&=(!nameField.getText().trim().isEmpty());
 //		correct&=(!Utils.getToggleText(gender).equals("null"));
 		correct&=(!contactField.getText().trim().isEmpty());
-		correct&=!(dateOfBirth.getValue()==null);
+//		correct&=!(dateOfBirth.getValue()==null);
 //		correct&=(!addressField.getText().trim().isEmpty());
 //		correct&=(!Utils.getToggleText(category).equals("null"));
 //		correct&=(!purposeField.getText().trim().isEmpty());
@@ -142,7 +142,7 @@ public class OldUserController implements Initializable {
 	public void searchUID(ActionEvent event) {
 		CheckIn ch = new CheckIn();
 		trimAll();
-		currentVisitor = new Visitor(nameField.getText(),"",contactField.getText(),dateOfBirth.getValue().toString(),"","","");
+		currentVisitor = new Visitor(nameField.getText(),"",contactField.getText(),"","","","");
 		Visitor tempVisitor = ch.alreadyInserted(currentVisitor);
 		if(tempVisitor==null){
 			errorLabel.setText("UID not Found. Please enter correct details\nor Checkin as New User.");
@@ -151,6 +151,8 @@ public class OldUserController implements Initializable {
 			uidField.setDisable(false);
 			uidField.setText(String.format("%09d", tempVisitor.getuID()));
 			currentVisitor.setuID(tempVisitor.getuID());
+			dateOfBirth.setDisable(false);
+			dateOfBirth.setValue(LocalDate.parse(tempVisitor.getDateOfBirth()));
 			addressField.setDisable(false);
 			addressField.setText(tempVisitor.getAddress());
 			toggleBox.setDisable(false);
@@ -225,6 +227,8 @@ public class OldUserController implements Initializable {
 	public void cancelExecute(ActionEvent event) {
 		if(!uidField.isDisabled()){
 			uidField.setText("");
+			dateOfBirth.setValue(null);
+			addressField.setDisable(true);
 			category.selectToggle(null);
 			uidField.setDisable(true);
 			addressField.setText("");
@@ -300,8 +304,8 @@ public class OldUserController implements Initializable {
 				if(ChronoUnit.DAYS.between(newValue,localDate)<0 || ChronoUnit.YEARS.between(newValue,localDate)>150)
 					dateOfBirth.setValue(localDate);
 			}
-			errorLabel.setText("");
-			checkValuesSearch();
+//			errorLabel.setText("");
+			checkValues();
 		});
 
 		addressField.textProperty().addListener(new ChangeListener<String>() {

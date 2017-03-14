@@ -64,7 +64,7 @@ public final class Utils
 //		double pHeight= paper.getHeight();
 //		System.out.println("a" + pHeight);
 		Printer printer = Printer.getDefaultPrinter();
-		PageLayout pageLayout = printer.createPageLayout(paper, PageOrientation.PORTRAIT, 54,54,54,54);
+		PageLayout pageLayout = printer.createPageLayout(paper, PageOrientation.LANDSCAPE, 54,54,54,54);
 //		double dpi = pageLayout.getPrintableHeight()/pHeight;
 //		System.out.println(pageLayout.getPrintableHeight());
 //		double marginIn = 1.5;

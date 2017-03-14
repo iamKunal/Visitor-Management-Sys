@@ -60,7 +60,7 @@
                               <Font name="System Bold" size="15.0" />
                            </font>
                         </Label>
-                        <DatePicker fx:id="dateOfBirth" maxWidth="1.7976931348623157E308" promptText="01/01/1990" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                        <DatePicker fx:id="dateOfBirth" disable="true" maxWidth="1.7976931348623157E308" promptText="01/01/1990" GridPane.columnIndex="2" GridPane.rowIndex="2" />
                         <Label text="Contact Number" GridPane.rowIndex="3">
                            <font>
                               <Font name="System Bold" size="15.0" />

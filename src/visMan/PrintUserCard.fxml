@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
@@ -21,13 +22,13 @@
    <children>
       <BorderPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <center>
-            <SplitPane fx:id="printableRegionRoot" dividerPositions="0.5" maxHeight="720.0" maxWidth="480.0" minHeight="720.0" minWidth="480.0" orientation="VERTICAL" prefHeight="720.0" prefWidth="480.0">
+            <SplitPane fx:id="printableRegionRoot" dividerPositions="0.5" maxHeight="480.0" maxWidth="720.0" minHeight="480.0" minWidth="720.0" mouseTransparent="true" pickOnBounds="false" prefHeight="480.0" prefWidth="720.0" BorderPane.alignment="CENTER">
               <items>
-                <AnchorPane minHeight="0.0" minWidth="480.0" prefHeight="0.0" prefWidth="480.0">
+                <AnchorPane>
                      <children>
-                        <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <BorderPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <center>
-                              <GridPane alignment="CENTER">
+                              <GridPane alignment="CENTER" maxHeight="100.0" maxWidth="360.0" minHeight="0.0" minWidth="0.0" prefWidth="360.0">
                                 <columnConstraints>
                                   <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="200.0" />
                                   <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="240.0" />
@@ -42,80 +43,136 @@
                                     <Label text="Name :">
                                        <font>
                                           <Font name="System Bold" size="15.0" />
-                                       </font></Label>
+                                       </font>
+                                    </Label>
                                     <Label fx:id="nameField" text="name" GridPane.columnIndex="1">
                                        <GridPane.margin>
                                           <Insets left="5.0" />
-                                       </GridPane.margin></Label>
+                                       </GridPane.margin>
+                                    </Label>
                                     <Label text="Age :" GridPane.rowIndex="1">
                                        <font>
                                           <Font name="System Bold" size="15.0" />
-                                       </font></Label>
+                                       </font>
+                                    </Label>
                                     <Label fx:id="ageField" text="age" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                        <GridPane.margin>
                                           <Insets left="5.0" />
-                                       </GridPane.margin></Label>
+                                       </GridPane.margin>
+                                    </Label>
                                     <Label text="Contact Number :" GridPane.rowIndex="2">
                                        <font>
                                           <Font name="System Bold" size="15.0" />
-                                       </font></Label>
+                                       </font>
+                                    </Label>
                                     <Label fx:id="contactField" text="contact" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                        <GridPane.margin>
                                           <Insets left="5.0" />
-                                       </GridPane.margin></Label>
+                                       </GridPane.margin>
+                                    </Label>
                                     <Label text="Purpose of Visit :" GridPane.rowIndex="3">
                                        <font>
                                           <Font name="System Bold" size="15.0" />
-                                       </font></Label>
+                                       </font>
+                                    </Label>
                                     <Label fx:id="purposeField" text="purpose" GridPane.columnIndex="1" GridPane.rowIndex="3">
                                        <GridPane.margin>
                                           <Insets left="5.0" />
-                                       </GridPane.margin></Label>
+                                       </GridPane.margin>
+                                    </Label>
                                  </children>
                               </GridPane>
                            </center>
                            <top>
                               <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
                                  <children>
-                                    <ImageView id="iitLogo" fitHeight="76.0" fitWidth="449.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../../images/iit.png" />
-                                       </image>
-                                    </ImageView>
-                                    <Separator prefWidth="200.0">
+                                    <HBox>
+                                       <children>
+                                          <ImageView id="iitLogo" fitHeight="76.0" fitWidth="430.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../../images/iit_logo.png" />
+                                             </image>
+                                          </ImageView>
+                                          <VBox alignment="CENTER" prefWidth="360.0">
+                                             <children>
+                                                <Label text="VISITOR PASS" textFill="RED">
+                                                   <VBox.margin>
+                                                      <Insets bottom="-20.0" top="-20.0" />
+                                                   </VBox.margin>
+                                                   <font>
+                                                      <Font name="System Bold" size="20.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label text="INDIAN INSTITUTE OF TECHNOLOGY INDORE" textFill="#1f497d">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.2" />
+                                                   </font>
+                                                   <VBox.margin>
+                                                      <Insets bottom="-20.0" />
+                                                   </VBox.margin>
+                                                </Label>
+                                                <Label text="Khandwa Road, Simrol , Indore – 453 552 " textFill="#1f497d">
+                                                   <font>
+                                                      <Font size="12.0" />
+                                                   </font>
+                                                   <VBox.margin>
+                                                      <Insets bottom="-10.0" />
+                                                   </VBox.margin>
+                                                </Label>
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </HBox>
+                                    <Separator>
                                        <VBox.margin>
                                           <Insets top="2.0" />
                                        </VBox.margin>
                                     </Separator>
-                                    <HBox alignment="CENTER" spacing="30.0">
+                                    <HBox alignment="CENTER" maxHeight="30.0" spacing="30.0">
                                        <children>
                                           <Label fx:id="uidField" text="UID : " />
                                           <Label fx:id="categoryField" text="Category : " />
                                        </children>
+                                       <VBox.margin>
+                                          <Insets bottom="-5.0" top="-5.0" />
+                                       </VBox.margin>
                                     </HBox>
-                                    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                    <HBox alignment="CENTER" maxWidth="360.0" minHeight="216.0" prefHeight="216.0" prefWidth="200.0">
                                        <children>
-                                          <Label alignment="CENTER" contentDisplay="CENTER" rotate="270.0" text="Visitor Card">
-                                             <font>
-                                                <Font name="System Bold Italic" size="20.0" />
-                                             </font>
+                                          <Label fx:id="validityField" alignment="CENTER" minWidth="216.0" prefWidth="216.0" rotate="270.0" text="Valid Upto : ">
+                                             <HBox.margin>
+                                                <Insets left="-75.0" right="-75.0" />
+                                             </HBox.margin>
                                           </Label>
-                                          <ImageView fx:id="visitorImage" fitHeight="144.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true" />
-                                          <Label alignment="CENTER" contentDisplay="CENTER" rotate="90.0" text="Visitor Card">
-                                             <font>
-                                                <Font name="System Bold Italic" size="20.0" />
-                                             </font>
+                                          <ImageView fx:id="visitorImage" fitHeight="216.0" fitWidth="180.0" pickOnBounds="true" preserveRatio="true" />
+                                          <Label fx:id="locationField" alignment="CENTER" minWidth="216.0" prefWidth="216.0" rotate="270.0" text="Location : ">
+                                             <HBox.margin>
+                                                <Insets left="-75.0" right="-75.0" />
+                                             </HBox.margin>
                                           </Label>
                                        </children>
                                     </HBox>
                                  </children>
                               </VBox>
                            </top>
+                           <bottom>
+                              <Label text="This card is property of IIT Indore, Entry permitted till expiry.  Please  return to security help desk after use " textAlignment="CENTER" wrapText="true" BorderPane.alignment="CENTER">
+                                 <font>
+                                    <Font size="10.0" />
+                                 </font>
+                                 <BorderPane.margin>
+                                    <Insets bottom="-10.0" top="-10.0" />
+                                 </BorderPane.margin>
+                              </Label>
+                           </bottom>
                         </BorderPane>
                      </children>
                   </AnchorPane>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="478.0" prefWidth="299.0" />
               </items>
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
             </SplitPane>
          </center>
          <right>

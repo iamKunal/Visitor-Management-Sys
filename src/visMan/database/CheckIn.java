@@ -47,10 +47,10 @@ public class CheckIn extends CreateConnection{
 	public Visitor alreadyInserted(Visitor visitor){
 		PreparedStatement statement = null;
 		try {
-            statement = conn.prepareStatement("select * from userinfo where name=? and contact=? and dateofbirth=?");
+            statement = conn.prepareStatement("select * from userinfo where name=? and contact=?");// and dateofbirth=?");
             statement.setString(1, visitor.getName());
             statement.setString(2, visitor.getContact());
-            statement.setString(3, visitor.getDateOfBirth());
+//            statement.setString(3, visitor.getDateOfBirth());
             ResultSet res = statement.executeQuery();
             Visitor vis=Utils.toVisitor(res);
             statement.close();

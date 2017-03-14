@@ -48,6 +48,10 @@ public class PrintUserCardController implements Initializable{
 	@FXML
 	private Label categoryField;
 	@FXML
+	private Label validityField;
+	@FXML
+	private Label locationField;
+	@FXML
 	private ImageView visitorImage;
 	@FXML
 	private ChoiceBox paperSize;

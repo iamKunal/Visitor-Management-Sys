@@ -43,12 +43,12 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <Label text="UID">
+                        <Label text="VID">
                            <font>
                               <Font name="System Bold" size="15.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="uidField" disable="true" editable="false" promptText="Click Search UID after entering below details..." GridPane.columnIndex="2" />
+                        <TextField fx:id="uidField" disable="true" editable="false" promptText="Click Search VID after entering below details..." GridPane.columnIndex="2" />
                         <Label text="Name" GridPane.rowIndex="1">
                            <font>
                               <Font name="System Bold" size="15.0" />
@@ -145,7 +145,7 @@
          <bottom>
             <ButtonBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <buttons>
-                  <Button fx:id="searchUidButton" disable="true" mnemonicParsing="false" onAction="#searchUID" text="Search UID" />
+                  <Button fx:id="searchUidButton" disable="true" mnemonicParsing="false" onAction="#searchUID" text="Search VID" />
                   <Button fx:id="reviewButton" disable="true" mnemonicParsing="false" onAction="#reviewAndPrint" text="Review and Print" />
                   <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#cancelExecute" text="Cancel" />
                </buttons>

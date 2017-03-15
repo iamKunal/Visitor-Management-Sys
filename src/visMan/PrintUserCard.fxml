@@ -130,7 +130,7 @@
                                     </Separator>
                                     <HBox alignment="CENTER" maxHeight="30.0" spacing="30.0">
                                        <children>
-                                          <Label fx:id="uidField" text="UID : " />
+                                          <Label fx:id="uidField" text="VID : " />
                                           <Label fx:id="categoryField" text="Category : " />
                                        </children>
                                        <VBox.margin>

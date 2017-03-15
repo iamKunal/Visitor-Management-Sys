@@ -76,7 +76,7 @@ public class PrintUserCardController implements Initializable{
 					System.out.println("DB Error!");
 				}
 				else{
-					uidField.setText("UID : "+ String.format("%09d", currentVisitor.getuID()));
+					uidField.setText("VID : "+ String.format("%09d", currentVisitor.getuID()));
 					try{
 						Files.copy(Paths.get("temp.jpg"), Paths.get(Main.IMGDB+"/"+String.format("%09d", currentVisitor.getuID())+".jpg"), StandardCopyOption.REPLACE_EXISTING);
 					}
@@ -86,7 +86,7 @@ public class PrintUserCardController implements Initializable{
 				}
 			}
 			else{
-				uidField.setText("UID : "+ String.format("%09d", tempVisitor.getuID()));
+				uidField.setText("VID : "+ String.format("%09d", tempVisitor.getuID()));
 				try{
 					Files.copy(Paths.get("temp.jpg"), Paths.get(Main.IMGDB+"/"+String.format("%09d", tempVisitor.getuID())+".jpg"), StandardCopyOption.REPLACE_EXISTING);
 				}
@@ -133,7 +133,7 @@ public class PrintUserCardController implements Initializable{
 	}
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		paperSize.getItems().addAll(Paper.A4,Paper.A6);
+		paperSize.getItems().addAll(Paper.A6,Paper.A4);
 		paperSize.getSelectionModel().selectFirst();
 //		printButton.requestFocus();
 		// TODO Auto-generated method stub
@@ -162,7 +162,7 @@ public class PrintUserCardController implements Initializable{
 
 			ageField.setText(ChronoUnit.DAYS.between(dob,localDate) + " days");
 		purposeField.setText(visitor.getPurpose());
-		uidField.setText("UID : "+visitor.getuID());
+		uidField.setText("VID : "+visitor.getuID());
 		String category = visitor.getCategory();
 		switch (category) {
 		case "C":
@@ -219,7 +219,7 @@ public class PrintUserCardController implements Initializable{
 
 			ageField.setText(ChronoUnit.DAYS.between(dob,localDate) + " days");
 		purposeField.setText(currentVisitor.getPurpose());
-		uidField.setText("UID : "+String.format("%09d", newVisitor.getuID()));
+		uidField.setText("VID : "+String.format("%09d", newVisitor.getuID()));
 		String category = this.currentVisitor.getCategory();
 		switch (category) {
 		case "C":

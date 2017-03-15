@@ -107,7 +107,7 @@ public class OldUserController implements Initializable {
         openStage.initModality(Modality.WINDOW_MODAL);
         openStage.initOwner(reviewButton.getScene().getWindow());
         openStage.setResizable(false);
-        openStage.setTitle("Checkin New User");
+        openStage.setTitle("Checkin Old User");
 //        openStage.setOnHiding(new EventHandler<WindowEvent>() {
 //
 //            @Override
@@ -128,12 +128,18 @@ public class OldUserController implements Initializable {
         oldUserRoot.setDisable(false);
 		try{
 	        File file = new File("temp.png");
+	        if(file.exists()){
 	        Image image = new Image(file.toURI().toString());
 			userImage.setImage(image);
+	        }
+	        else{
+	        	file = new File(Main.IMGDB+"/"+uidField.getText()+".jpg");
+		        Image image = new Image(file.toURI().toString());
+				userImage.setImage(image);
+	        }
 		}
 		catch (Exception e) {
-			System.out.println("Image not present");
-			;
+	        ;
 		}
 		reviewButton.requestFocus();
 	}
@@ -145,7 +151,7 @@ public class OldUserController implements Initializable {
 		currentVisitor = new Visitor(nameField.getText(),"",contactField.getText(),"","","","");
 		Visitor tempVisitor = ch.alreadyInserted(currentVisitor);
 		if(tempVisitor==null){
-			errorLabel.setText("UID not Found. Please enter correct details\nor Checkin as New User.");
+			errorLabel.setText("VID not Found. Please enter correct details\nor Checkin as New User.");
 		}
 		else{
 			uidField.setDisable(false);

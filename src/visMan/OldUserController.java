@@ -189,8 +189,7 @@ public class OldUserController implements Initializable {
 			Visitor newVisitor = new Visitor(currentVisitor.getuID(),nameField.getText(), currentVisitor.getGender(), contactField.getText(), dateOfBirth.getValue().toString(), addressField.getText(), Utils.getToggleText(category), purposeField.getText());
 //			System.out.println(newVisitor);
 			newVisitor.setLocation(locationField.getText());
-			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-			newVisitor.setValidity((LocalDate.now().plusDays(Integer.parseInt(validityField.getText()))).format(dtf));
+			newVisitor.setValidity(LocalDate.now().plusDays(Integer.parseInt(validityField.getText())));
 //	        oldUserRoot.setDisable(true);
 			try
 			{

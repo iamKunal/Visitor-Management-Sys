@@ -1,12 +1,17 @@
 package visMan;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
+
 import javafx.scene.control.ToggleGroup;
 import visMan.utils.Utils;
 
 public class Visitor {
 	final String SEP=" - ";
 	private int uID;
-	private String name, gender,contact,dateOfBirth,address,category,purpose,location,validity;
+	private String name, gender,contact,dateOfBirth,address,category,purpose,location;
+	private LocalDate validity;
 	private int gateNo;
 	public int getuID() {
 		return uID;
@@ -79,9 +84,12 @@ public class Visitor {
 		this.location = location;
 	}
 	public String getValidity() {
+		return validity.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+	}
+	public LocalDate getValidityDate(){
 		return validity;
 	}
-	public void setValidity(String validity) {
+	public void setValidity(LocalDate validity) {
 		this.validity = validity;
 	}
 	public int getGateNo() {

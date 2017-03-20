@@ -149,8 +149,7 @@ public class NewUserController implements Initializable {
 //		System.out.println(newVisitor);
 		newVisitor.setLocation(locationField.getText());
 		newVisitor.setGateNo(Main.gateNumber);
-		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-		newVisitor.setValidity((LocalDate.now().plusDays(Integer.parseInt(validityField.getText()))).format(dtf));
+		newVisitor.setValidity(LocalDate.now().plusDays(Integer.parseInt(validityField.getText())));
 		CheckIn ch = new CheckIn();
 		Visitor tempVisitor = ch.alreadyInserted(newVisitor);
 		if(tempVisitor==null)

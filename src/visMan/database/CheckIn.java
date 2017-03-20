@@ -78,7 +78,7 @@ public class CheckIn extends CreateConnection{
             statement.setString(3, visitor.getPurpose());
             statement.setString(4, visitor.getLocation());
             statement.setInt(5, Main.gateNumber);
-            statement.setDate(6,(Date) new SimpleDateFormat("dd/MM/yyyy").parse(visitor.getValidity()));
+            statement.setDate(6,java.sql.Date.valueOf(visitor.getValidityDate()));
             statement.execute();
         } catch (Exception e) {
         } finally {

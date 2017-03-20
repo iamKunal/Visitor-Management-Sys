@@ -6,7 +6,7 @@ import visMan.utils.Utils;
 public class Visitor {
 	final String SEP=" - ";
 	private int uID;
-	private String name, gender,contact,dateOfBirth,address,category,purpose;
+	private String name, gender,contact,dateOfBirth,address,category,purpose,location,validity;
 	public int getuID() {
 		return uID;
 	}
@@ -70,6 +70,18 @@ public class Visitor {
 	}
 	public void setPurpose(String purpose) {
 		this.purpose = purpose.trim();
+	}
+	public String getLocation() {
+		return location.trim();
+	}
+	public void setLocation(String location) {
+		this.location = location;
+	}
+	public String getValidity() {
+		return validity;
+	}
+	public void setValidity(String validity) {
+		this.validity = validity;
 	}
 	public Visitor(){
 		this.uID=0;

@@ -62,6 +62,8 @@ public class NewUserController implements Initializable {
 	@FXML
 	private ToggleGroup category;
 	@FXML
+	private TextField locationField;
+	@FXML
 	private TextField purposeField;
 	@FXML
 	private ImageView userImage;
@@ -81,6 +83,7 @@ public class NewUserController implements Initializable {
 		correct&=(!addressField.getText().trim().isEmpty());
 		correct&=(!Utils.getToggleText(category).equals("null"));
 		correct&=(!purposeField.getText().trim().isEmpty());
+		correct&=(!locationField.getText().trim().isEmpty());
 		try{
 		correct&=!(userImage.getImage().getHeight()==0);
 		}
@@ -141,6 +144,7 @@ public class NewUserController implements Initializable {
         trimAll();
 		Visitor newVisitor = new Visitor(nameField.getText(), gender, contactField.getText(), dateOfBirth.getValue().toString(), addressField.getText(), category, purposeField.getText());
 //		System.out.println(newVisitor);
+		newVisitor.setLocation(locationField.getText());
 		CheckIn ch = new CheckIn();
 		Visitor tempVisitor = ch.alreadyInserted(newVisitor);
 		if(tempVisitor==null)
@@ -259,6 +263,17 @@ public class NewUserController implements Initializable {
 		category.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
 			@Override
 			public void changed(ObservableValue<? extends Toggle> observable, Toggle oldValue, Toggle newValue) {
+				checkValues();
+			}
+		});
+		locationField.textProperty().addListener(new ChangeListener<String>() {
+			@Override
+			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+				if(!newValue.isEmpty()){
+					String newString = newValue.substring(newValue.indexOf(newValue.trim()));
+					newString = newString.replaceAll("  ", " ");
+					locationField.setText(newString);
+				}
 				checkValues();
 			}
 		});

@@ -143,6 +143,7 @@ public class PrintUserCardController implements Initializable{
 		this.currentVisitor=visitor;
 		this.nameField.setText(visitor.getName());
 		this.contactField.setText(visitor.getContact());
+		this.locationField.setText("Location : " + visitor.getLocation());
 		try{
 	        File file = new File("temp.jpg");
 	        Image image = new Image(file.toURI().toString());
@@ -185,6 +186,7 @@ public class PrintUserCardController implements Initializable{
 		this.oldVisitor=oldVisitor;
 		this.nameField.setText(newVisitor.getName());
 		this.contactField.setText(newVisitor.getContact());
+		this.locationField.setText("Location : " + newVisitor.getLocation());
 //		try{
 //	        File file = new File("temp.png");
 //	        Image image = new Image(file.toURI().toString());

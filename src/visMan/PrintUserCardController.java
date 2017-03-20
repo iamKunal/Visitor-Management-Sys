@@ -158,6 +158,7 @@ public class PrintUserCardController implements Initializable{
 		catch (Exception e) {
 			// TODO: handle exception
 		}
+		this.validityField.setText(this.validityField.getText()+visitor.getValidity());
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		LocalDate localDate = LocalDate.now();
 		LocalDate dob  = LocalDate.parse(visitor.getDateOfBirth(),dtf);
@@ -215,6 +216,8 @@ public class PrintUserCardController implements Initializable{
 				;
 			}
 //		}
+
+		this.validityField.setText(this.validityField.getText()+newVisitor.getValidity());
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		LocalDate localDate = LocalDate.now();
 //		System.out.println(currentVisitor);

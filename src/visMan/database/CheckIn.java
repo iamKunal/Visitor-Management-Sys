@@ -29,8 +29,8 @@ public class CheckIn extends CreateConnection{
             statement.setString(6, visitor.getCategory());
             ResultSet res = statement.executeQuery();
             Visitor vis=Utils.toVisitor(res);
-            vis.setPurpose(visitor.getPurpose());
-            insertReport(vis);
+            visitor.setuID(vis.getuID());
+            insertReport(visitor);
             statement.close();
             return vis;  
         } catch (Exception e) {

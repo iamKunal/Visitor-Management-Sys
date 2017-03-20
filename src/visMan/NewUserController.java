@@ -66,6 +66,8 @@ public class NewUserController implements Initializable {
 	@FXML
 	private TextField purposeField;
 	@FXML
+	private TextField validityField;
+	@FXML
 	private ImageView userImage;
 	@FXML
 	private Button captureButton;
@@ -84,6 +86,7 @@ public class NewUserController implements Initializable {
 		correct&=(!Utils.getToggleText(category).equals("null"));
 		correct&=(!purposeField.getText().trim().isEmpty());
 		correct&=(!locationField.getText().trim().isEmpty());
+		correct&=(!validityField.getText().trim().isEmpty());
 		try{
 		correct&=!(userImage.getImage().getHeight()==0);
 		}
@@ -146,6 +149,8 @@ public class NewUserController implements Initializable {
 //		System.out.println(newVisitor);
 		newVisitor.setLocation(locationField.getText());
 		newVisitor.setGateNo(Main.gateNumber);
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		newVisitor.setValidity((LocalDate.now().plusDays(Integer.parseInt(validityField.getText()))).format(dtf));
 		CheckIn ch = new CheckIn();
 		Visitor tempVisitor = ch.alreadyInserted(newVisitor);
 		if(tempVisitor==null)
@@ -163,7 +168,7 @@ public class NewUserController implements Initializable {
 	            stager.setScene(userCard);
                 stager.initModality(Modality.WINDOW_MODAL);
                 stager.initOwner(reviewButton.getScene().getWindow());
-	            stager.initStyle(StageStyle.UNDECORATED);
+	            stager.initStyle(StageStyle.UTILITY);
 	//            stager.setResizable(false);
 	//			stager.setOnHiding((new EventHandler<WindowEvent>() {
 	//				public void handle(WindowEvent we)
@@ -286,6 +291,15 @@ public class NewUserController implements Initializable {
 					String newString = newValue.substring(newValue.indexOf(newValue.trim()));
 					newString = newString.replaceAll("  ", " ");
 					purposeField.setText(newString);
+				}
+				checkValues();
+			}
+		});
+		validityField.textProperty().addListener(new ChangeListener<String>() {
+			@Override
+			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+				if(!newValue.matches("^\\d*$") || newValue.matches("^0*$") && newValue.length()!=0){
+					validityField.setText(oldValue);
 				}
 				checkValues();
 			}

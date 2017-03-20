@@ -42,6 +42,7 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
                         <Label text="VID">
@@ -90,6 +91,12 @@
                               <Font name="System Bold" size="15.0" />
                            </font>
                         </Label>
+                        <Label text="Validity" GridPane.rowIndex="8">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="validityField" disable="true" promptText="Enter Validity in number of days..." text="1" GridPane.columnIndex="2" GridPane.rowIndex="8" />
                         <HBox fx:id="toggleBox" alignment="CENTER" disable="true" prefHeight="100.0" prefWidth="200.0" spacing="50.0" GridPane.columnIndex="2" GridPane.rowIndex="5">
                            <children>
                               <RadioButton mnemonicParsing="false" text="Casual">
@@ -110,6 +117,7 @@
                         <Label text=":" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                         <Label text=":" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                         <Label text=":" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                        <Label text=":" GridPane.columnIndex="1" GridPane.rowIndex="8" />
                      </children>
                      <VBox.margin>
                         <Insets bottom="10.0" left="20.0" right="10.0" top="20.0" />

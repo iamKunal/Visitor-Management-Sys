@@ -33,6 +33,7 @@ public class MainController implements Initializable {
             directory.mkdir();
         }
 	}
+	@FXML ToggleGroup gateNo;
 	@FXML VBox mainRoot;
 	@FXML Button goButton;
 	@FXML
@@ -171,7 +172,18 @@ public class MainController implements Initializable {
 			}
 			}
 		});
-		
+		gateNo.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
+			@Override
+			public void changed(ObservableValue<? extends Toggle> observable, Toggle oldValue, Toggle newValue) {
+				// TODO Auto-generated method stub
+				String gate=((RadioButton)newValue.getToggleGroup().getSelectedToggle()).getText();
+				if(gate.contains("1")){
+					Main.gateNumber=1;
+				}
+				else
+					Main.gateNumber=2;
+			}
+		});
 //		user.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
 //			@Override
 //			public void changed(ObservableValue<? extends Toggle> observable, Toggle oldValue, Toggle newValue) {

@@ -41,6 +41,7 @@
                         <RowConstraints minHeight="10.0" prefHeight="75.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
                         <Label text="VID">
@@ -78,7 +79,13 @@
                               <Font name="System Bold" size="15.0" />
                            </font>
                         </Label>
-                        <Label text="Purpose of Visit" GridPane.rowIndex="6">
+                        <Label text="Location" GridPane.rowIndex="6">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="locationField" disable="true" promptText="Enter Location to Visit..." GridPane.columnIndex="2" GridPane.rowIndex="6" />
+                        <Label text="Purpose of Visit" GridPane.rowIndex="7">
                            <font>
                               <Font name="System Bold" size="15.0" />
                            </font>
@@ -94,7 +101,7 @@
                               <RadioButton mnemonicParsing="false" text="Others" toggleGroup="$category" />
                            </children>
                         </HBox>
-                        <TextField fx:id="purposeField" disable="true" promptText="Enter Purpose of Visit..." GridPane.columnIndex="2" GridPane.rowIndex="6" />
+                        <TextField fx:id="purposeField" disable="true" promptText="Enter Purpose of Visit..." GridPane.columnIndex="2" GridPane.rowIndex="7" />
                         <Label text=":" GridPane.columnIndex="1" />
                         <Label text=":" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                         <Label text=":" GridPane.columnIndex="1" GridPane.rowIndex="2" />
@@ -102,6 +109,7 @@
                         <Label text=":" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                         <Label text=":" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                         <Label text=":" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                        <Label text=":" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                      </children>
                      <VBox.margin>
                         <Insets bottom="10.0" left="20.0" right="10.0" top="20.0" />

@@ -17,6 +17,16 @@
                <font>
                   <Font name="System Bold Italic" size="34.0" />
                </font></Label>
+            <HBox alignment="CENTER" spacing="100.0">
+               <children>
+                  <RadioButton mnemonicParsing="false" selected="true" text="Gate No. 1">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="gateNo" />
+                     </toggleGroup>
+                  </RadioButton>
+                  <RadioButton mnemonicParsing="false" text="Gate No. 2" toggleGroup="$gateNo" />
+               </children>
+            </HBox>
             <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0">
                <children>
                   <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">

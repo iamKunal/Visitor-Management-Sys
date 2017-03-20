@@ -145,6 +145,7 @@ public class NewUserController implements Initializable {
 		Visitor newVisitor = new Visitor(nameField.getText(), gender, contactField.getText(), dateOfBirth.getValue().toString(), addressField.getText(), category, purposeField.getText());
 //		System.out.println(newVisitor);
 		newVisitor.setLocation(locationField.getText());
+		newVisitor.setGateNo(Main.gateNumber);
 		CheckIn ch = new CheckIn();
 		Visitor tempVisitor = ch.alreadyInserted(newVisitor);
 		if(tempVisitor==null)
@@ -200,6 +201,7 @@ public class NewUserController implements Initializable {
 		nameField.setText(nameField.getText().trim());
 		contactField.setText(contactField.getText().trim());
 		addressField.setText(addressField.getText().trim());
+		locationField.setText(locationField.getText().trim());
 		purposeField.setText(purposeField.getText().trim());
 	}
 	@Override

@@ -30,8 +30,8 @@
                            <center>
                               <GridPane alignment="CENTER" maxHeight="100.0" maxWidth="360.0" minHeight="0.0" minWidth="0.0" prefWidth="360.0">
                                 <columnConstraints>
-                                  <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="200.0" />
-                                  <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="240.0" />
+                                  <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="152.0" minWidth="10.0" prefWidth="99.0" />
+                                  <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="265.0" minWidth="10.0" prefWidth="256.0" />
                                 </columnConstraints>
                                 <rowConstraints>
                                   <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
@@ -50,7 +50,7 @@
                                           <Insets left="5.0" />
                                        </GridPane.margin>
                                     </Label>
-                                    <Label text="Age :" GridPane.rowIndex="1">
+                                    <Label prefWidth="65.0" text="Age :" GridPane.rowIndex="1">
                                        <font>
                                           <Font name="System Bold" size="15.0" />
                                        </font>
@@ -60,7 +60,7 @@
                                           <Insets left="5.0" />
                                        </GridPane.margin>
                                     </Label>
-                                    <Label text="Contact Number :" GridPane.rowIndex="2">
+                                    <Label text="Contact :" GridPane.rowIndex="2">
                                        <font>
                                           <Font name="System Bold" size="15.0" />
                                        </font>
@@ -70,7 +70,7 @@
                                           <Insets left="5.0" />
                                        </GridPane.margin>
                                     </Label>
-                                    <Label text="Purpose of Visit :" GridPane.rowIndex="3">
+                                    <Label text="Purpose :" GridPane.rowIndex="3">
                                        <font>
                                           <Font name="System Bold" size="15.0" />
                                        </font>
@@ -95,7 +95,7 @@
                                           </ImageView>
                                           <VBox alignment="CENTER" prefWidth="360.0">
                                              <children>
-                                                <Label text="VISITOR PASS" textFill="RED">
+                                                <Label fx:id="visitorHeadingLabel" text="VISITOR PASS at " textFill="RED">
                                                    <VBox.margin>
                                                       <Insets bottom="-20.0" top="-20.0" />
                                                    </VBox.margin>

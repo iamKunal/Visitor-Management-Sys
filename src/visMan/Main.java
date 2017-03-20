@@ -15,6 +15,7 @@ import javafx.fxml.FXMLLoader;
 
 public class Main extends Application {
 	public final static String IMGDB="imgdb";
+	public static int gateNumber=1;
 	@Override
 	public void start(Stage primaryStage) {
 		try {

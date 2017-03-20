@@ -59,6 +59,8 @@ public class OldUserController implements Initializable {
 	@FXML
 	private TextField purposeField;
 	@FXML
+	private TextField locationField;
+	@FXML
 	private TextField uidField;
 	@FXML
 	private Label errorLabel;
@@ -162,6 +164,7 @@ public class OldUserController implements Initializable {
 			addressField.setDisable(false);
 			addressField.setText(tempVisitor.getAddress());
 			toggleBox.setDisable(false);
+			locationField.setDisable(false);
 			purposeField.setDisable(false);
 			try{
 		        File file = new File(Main.IMGDB + "/" + String.format("%09d", tempVisitor.getuID()) +".jpg");
@@ -182,7 +185,7 @@ public class OldUserController implements Initializable {
 	        trimAll();
 			Visitor newVisitor = new Visitor(currentVisitor.getuID(),nameField.getText(), currentVisitor.getGender(), contactField.getText(), dateOfBirth.getValue().toString(), addressField.getText(), Utils.getToggleText(category), purposeField.getText());
 //			System.out.println(newVisitor);
-			
+			newVisitor.setLocation(locationField.getText());
 //	        oldUserRoot.setDisable(true);
 			try
 			{
@@ -240,6 +243,8 @@ public class OldUserController implements Initializable {
 			addressField.setText("");
 			addressField.setDisable(true);
 			toggleBox.setDisable(true);
+			locationField.setText("");
+			locationField.setDisable(true);
 			purposeField.setText("");
 			purposeField.setDisable(true);
 			captureButton.setDisable(true);
@@ -256,6 +261,7 @@ public class OldUserController implements Initializable {
 		nameField.setText(nameField.getText().trim());
 		contactField.setText(contactField.getText().trim());
 		addressField.setText(addressField.getText().trim());
+		locationField.setText(locationField.getText().trim());
 		purposeField.setText(purposeField.getText().trim());
 	}
 	private void checkValues(){
@@ -266,6 +272,7 @@ public class OldUserController implements Initializable {
 		correct&=!(dateOfBirth.getValue()==null);
 		correct&=(!addressField.getText().trim().isEmpty());
 		correct&=(!Utils.getToggleText(category).equals("null"));
+		correct&=(!locationField.getText().trim().isEmpty());
 		correct&=(!purposeField.getText().trim().isEmpty());
 		try{
 		correct&=!(userImage.getImage().getHeight()==0);
@@ -345,6 +352,17 @@ public class OldUserController implements Initializable {
 		category.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
 			@Override
 			public void changed(ObservableValue<? extends Toggle> observable, Toggle oldValue, Toggle newValue) {
+				checkValues();
+			}
+		});
+		locationField.textProperty().addListener(new ChangeListener<String>() {
+			@Override
+			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+				if(!newValue.isEmpty()){
+					String newString = newValue.substring(newValue.indexOf(newValue.trim()));
+					newString = newString.replaceAll("  ", " ");
+					locationField.setText(newString);
+				}
 				checkValues();
 			}
 		});

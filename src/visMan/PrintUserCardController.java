@@ -36,6 +36,8 @@ public class PrintUserCardController implements Initializable{
 	@FXML
 	private SplitPane printableRegionRoot;
 	@FXML
+	private Label visitorHeadingLabel;
+	@FXML
 	private Label nameField;
 	@FXML
 	private Label ageField;
@@ -104,11 +106,13 @@ public class PrintUserCardController implements Initializable{
 			}
 			else{
 				if(currentVisitor.equals(oldVisitor)){
+					currentVisitor.setGateNo(Main.gateNumber);
 					ch.insertReport(currentVisitor);
 				}
 				else
 				{
 					ch.updateUser(currentVisitor);
+					currentVisitor.setGateNo(Main.gateNumber);
 					ch.insertReport(currentVisitor);
 				}
 			}
@@ -133,6 +137,8 @@ public class PrintUserCardController implements Initializable{
 	}
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		char c=(char)(0x24F5-1+Main.gateNumber);
+		visitorHeadingLabel.setText(visitorHeadingLabel.getText()+String.valueOf(c));
 		paperSize.getItems().addAll(Paper.A6,Paper.A4);
 		paperSize.getSelectionModel().selectFirst();
 //		printButton.requestFocus();

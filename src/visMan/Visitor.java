@@ -7,6 +7,7 @@ public class Visitor {
 	final String SEP=" - ";
 	private int uID;
 	private String name, gender,contact,dateOfBirth,address,category,purpose,location,validity;
+	private int gateNo;
 	public int getuID() {
 		return uID;
 	}
@@ -82,6 +83,12 @@ public class Visitor {
 	}
 	public void setValidity(String validity) {
 		this.validity = validity;
+	}
+	public int getGateNo() {
+		return gateNo;
+	}
+	public void setGateNo(int gateNo) {
+		this.gateNo = gateNo;
 	}
 	public Visitor(){
 		this.uID=0;

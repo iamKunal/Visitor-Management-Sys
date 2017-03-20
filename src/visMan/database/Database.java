@@ -55,8 +55,10 @@ public class Database extends CreateConnection{
            sql = "CREATE TABLE if not exists report " +
                    "(SNo int not NULL primary key AUTO_INCREMENT, " +
                    "uid int not NULL," +
-                   " name varchar(255) not null, " + 
+                   " name varchar(255) not null," +
                    " purposeOfVisit varchar(255)not null," +
+                   " location varchar(255) not null," +
+                   " gateNo int not null," +
                    "inTimestamp timestamp DEFAULT CURRENT_TIMESTAMP," +
                    "outTimestamp timestamp default 0," +
                    "FOREIGN KEY(uid) REFERENCES userinfo(uid))";

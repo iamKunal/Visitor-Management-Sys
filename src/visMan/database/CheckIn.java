@@ -2,6 +2,7 @@ package visMan.database;
 
 import java.sql.*;
 
+import visMan.Main;
 import visMan.Visitor;
 import visMan.utils.Utils;
 
@@ -70,10 +71,12 @@ public class CheckIn extends CreateConnection{
 	public void insertReport(Visitor visitor){
 		PreparedStatement statement = null;
 		try {
-            statement = conn.prepareStatement("insert into report(uid,name,purposeOfVisit) values(?,?,?)");
+            statement = conn.prepareStatement("insert into report(uid,name,purposeOfVisit,location,gateNo) values(?,?,?,?,?)");
             statement.setInt(1, visitor.getuID());
             statement.setString(2, visitor.getName());
             statement.setString(3, visitor.getPurpose());
+            statement.setString(4, visitor.getLocation());
+            statement.setInt(5, Main.gateNumber);
             statement.execute();
         } catch (SQLException e) {
         } finally {

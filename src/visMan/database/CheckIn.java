@@ -1,6 +1,7 @@
 package visMan.database;
 
 import java.sql.*;
+import java.text.SimpleDateFormat;
 
 import visMan.Main;
 import visMan.Visitor;
@@ -71,14 +72,15 @@ public class CheckIn extends CreateConnection{
 	public void insertReport(Visitor visitor){
 		PreparedStatement statement = null;
 		try {
-            statement = conn.prepareStatement("insert into report(uid,name,purposeOfVisit,location,gateNo) values(?,?,?,?,?)");
+            statement = conn.prepareStatement("insert into report(uid,name,purposeOfVisit,location,gateNo,validUpto) values(?,?,?,?,?,?)");
             statement.setInt(1, visitor.getuID());
             statement.setString(2, visitor.getName());
             statement.setString(3, visitor.getPurpose());
             statement.setString(4, visitor.getLocation());
             statement.setInt(5, Main.gateNumber);
+            statement.setDate(6,(Date) new SimpleDateFormat("dd/MM/yyyy").parse(visitor.getValidity()));
             statement.execute();
-        } catch (SQLException e) {
+        } catch (Exception e) {
         } finally {
             if (statement != null) {
                 try {

@@ -3,6 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
@@ -178,8 +179,9 @@
          <right>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="150.0" spacing="40.0" BorderPane.alignment="CENTER">
                <children>
+                  <CheckBox fx:id="printCheck" mnemonicParsing="false" selected="true" text="Print" textAlignment="CENTER" />
                   <ChoiceBox fx:id="paperSize" maxWidth="125.0" pickOnBounds="false" prefWidth="125.0" />
-                  <Button fx:id="printButton" minWidth="80.0" mnemonicParsing="false" onAction="#printCard" text="Print" />
+                  <Button fx:id="printButton" minWidth="80.0" mnemonicParsing="false" onAction="#printCard" text="Save and Print" />
                   <Button fx:id="cancelButton" minWidth="80.0" mnemonicParsing="false" onAction="#cancelGoBack" text="Cancel" />
                </children>
             </VBox>

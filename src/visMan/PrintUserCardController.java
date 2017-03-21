@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.print.Paper;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.SplitPane;
 
@@ -19,6 +20,7 @@ import java.util.ResourceBundle;
 
 import com.sun.org.apache.xalan.internal.xsltc.runtime.Node;
 
+import javafx.beans.value.ChangeListener;
 import javafx.event.ActionEvent;
 
 import javafx.scene.control.Label;
@@ -30,6 +32,7 @@ import visMan.database.CheckIn;
 import visMan.utils.Utils;
 
 public class PrintUserCardController implements Initializable{
+	
 	private Visitor currentVisitor;
 	private boolean copyImage=true;
 	private Visitor oldVisitor;
@@ -55,6 +58,8 @@ public class PrintUserCardController implements Initializable{
 	private Label locationField;
 	@FXML
 	private ImageView visitorImage;
+	@FXML
+	private CheckBox printCheck;
 	@FXML
 	private ChoiceBox paperSize;
 	@FXML
@@ -126,7 +131,8 @@ public class PrintUserCardController implements Initializable{
 				}
 			}
 		}
-		Utils.print(printableRegionRoot, (Paper)paperSize.getValue());
+		if(printCheck.isSelected())
+			Utils.print(printableRegionRoot, (Paper)paperSize.getValue());
 		cancelGoBack(new ActionEvent());
 	}
 	// Event Listener on Button[#cancelButton].onAction
@@ -141,6 +147,13 @@ public class PrintUserCardController implements Initializable{
 		visitorHeadingLabel.setText(visitorHeadingLabel.getText()+String.valueOf(c));
 		paperSize.getItems().addAll(Paper.A6,Paper.A4);
 		paperSize.getSelectionModel().selectFirst();
+		printCheck.selectedProperty().addListener((o,ov,nv) -> {
+			if(nv){
+				printButton.setText("Save and Print");
+			}
+			else
+				printButton.setText("Save Only");
+		});
 //		printButton.requestFocus();
 		// TODO Auto-generated method stub
 		

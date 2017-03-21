@@ -168,6 +168,23 @@ public final class Utils
         }
 		return null;
 	}
+	public static Visitor toValidityVisitor(ResultSet res) {
+		Visitor visitor;
+		try{
+			res.next();
+			visitor = new Visitor();
+			visitor.setuID(res.getInt("uid"));
+			visitor.setPurpose(res.getString("purposeOfVisit"));
+			visitor.setLocation(res.getString("location"));
+			visitor.setGateNo(res.getInt("gateNo"));
+			visitor.setValidity(res.getDate("validUpto").toLocalDate());
+			res.close();
+			return visitor;
+		} catch (SQLException e) {
+//			System.out.println("yo");
+        }
+		return null;
+	}
 	public static ObservableList<Visitor> toVisitorList(ResultSet res){
 		ObservableList<Visitor> list = FXCollections.observableArrayList();
         try {

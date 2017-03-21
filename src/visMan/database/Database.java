@@ -45,8 +45,7 @@ public class Database extends CreateConnection{
                   "gender varchar(1) not null," +
                   "contact varchar(10) not null," +
                   "dateOfBirth date not null,"+
-                  " address varchar(255)not null," +
-                  "category varchar(1) not null," +
+                  " address varchar(255)not null," +                  
           		  "firstVisit timestamp DEFAULT CURRENT_TIMESTAMP," +
                   "lastVisit timestamp DEFAULT CURRENT_TIMESTAMP," +
                   "noOfVisits int not null default 1)";
@@ -56,6 +55,7 @@ public class Database extends CreateConnection{
                    "(SNo int not NULL primary key AUTO_INCREMENT, " +
                    "uid int not NULL," +
                    " name varchar(255) not null," +
+                   "category varchar(1) not null," +
                    " purposeOfVisit varchar(255)not null," +
                    " location varchar(255) not null," +
                    " gateNo int not null," +
@@ -69,6 +69,7 @@ public class Database extends CreateConnection{
             sql = "CREATE TABLE if not exists validity " +
                     "(SNo int not NULL primary key AUTO_INCREMENT, " +
                     "uid int not NULL," +
+                    "category varchar(1) not null," +
                     " purposeOfVisit varchar(255)not null," +
                     " location varchar(255) not null," +
                     " gateNo int not null," +

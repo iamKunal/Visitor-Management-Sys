@@ -12,22 +12,20 @@ public class CheckIn extends CreateConnection{
 		PreparedStatement statement = null;
 		try {
 			
-            statement = conn.prepareStatement("insert into userinfo(name,gender,contact,dateOfBirth,address,category) values(?,?,?,?,?,?)");
+            statement = conn.prepareStatement("insert into userinfo(name,gender,contact,dateOfBirth,address) values(?,?,?,?,?)");
             statement.setString(1, visitor.getName());
             statement.setString(2, visitor.getGender());
             statement.setString(3, visitor.getContact());
             statement.setString(4, visitor.getDateOfBirth());
             statement.setString(5, visitor.getAddress());
-            statement.setString(6, visitor.getCategory());
             statement.execute();
             statement.close();
-            statement = conn.prepareStatement("select * from userinfo where name=? and gender=? and contact=? and dateofbirth=? and address=? and category=?");
+            statement = conn.prepareStatement("select * from userinfo where name=? and gender=? and contact=? and dateofbirth=? and address=?");
             statement.setString(1, visitor.getName());
             statement.setString(2, visitor.getGender());
             statement.setString(3, visitor.getContact());
             statement.setString(4, visitor.getDateOfBirth());
             statement.setString(5, visitor.getAddress());
-            statement.setString(6, visitor.getCategory());
             ResultSet res = statement.executeQuery();
             Visitor vis=Utils.toVisitor(res);
             visitor.setuID(vis.getuID());
@@ -95,13 +93,14 @@ public class CheckIn extends CreateConnection{
 	public void insertReport(Visitor visitor){
 		PreparedStatement statement = null;
 		try {
-            statement = conn.prepareStatement("insert into report(uid,name,purposeOfVisit,location,gateNo,validUpto) values(?,?,?,?,?,?)");
+            statement = conn.prepareStatement("insert into report(uid,name,category,purposeOfVisit,location,gateNo,validUpto) values(?,?,?,?,?,?,?)");
             statement.setInt(1, visitor.getuID());
             statement.setString(2, visitor.getName());
-            statement.setString(3, visitor.getPurpose());
-            statement.setString(4, visitor.getLocation());
-            statement.setInt(5, Main.gateNumber);
-            statement.setDate(6,java.sql.Date.valueOf(visitor.getValidityDate()));
+            statement.setString(3, visitor.getCategory());
+            statement.setString(4, visitor.getPurpose());
+            statement.setString(5, visitor.getLocation());
+            statement.setInt(6, Main.gateNumber);
+            statement.setDate(7,java.sql.Date.valueOf(visitor.getValidityDate()));
             statement.execute();
             insertValidity(visitor);
         } catch (Exception e) {
@@ -122,12 +121,13 @@ public class CheckIn extends CreateConnection{
             statement.setInt(1, visitor.getuID());
             statement.execute();
             statement.close();
-            statement = conn.prepareStatement("insert into validity(uid,purposeOfVisit,location,gateNo,validUpto) values(?,?,?,?,?,?)");
+            statement = conn.prepareStatement("insert into validity(uid,category,purposeOfVisit,location,gateNo,validUpto) values(?,?,?,?,?,?)");
             statement.setInt(1, visitor.getuID());
-            statement.setString(2, visitor.getPurpose());
-            statement.setString(3, visitor.getLocation());
-            statement.setInt(4, Main.gateNumber);
-            statement.setDate(5,java.sql.Date.valueOf(visitor.getValidityDate()));
+            statement.setString(2, visitor.getCategory());
+            statement.setString(3, visitor.getPurpose());
+            statement.setString(4, visitor.getLocation());
+            statement.setInt(5, Main.gateNumber);
+            statement.setDate(6,java.sql.Date.valueOf(visitor.getValidityDate()));
             statement.execute();
         } catch (Exception e) {
         } finally {

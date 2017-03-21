@@ -219,7 +219,6 @@ public class PrintUserCardController implements Initializable{
 				if(!(f.exists() && !f.isDirectory())) { 
 					f = new File(Main.IMGDB + "/" + String.format("%09d", this.currentVisitor.getuID()) +".jpg");
 					copyImage=false;
-					System.out.println("Hello");
 				}
 		        Image image = new Image(f.toURI().toString());
 				this.visitorImage.setImage(image);

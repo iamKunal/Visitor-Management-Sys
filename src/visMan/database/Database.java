@@ -67,8 +67,7 @@ public class Database extends CreateConnection{
             stmt.execute(sql);
             
             sql = "CREATE TABLE if not exists validity " +
-                    "(SNo int not NULL primary key AUTO_INCREMENT, " +
-                    "uid int not NULL," +
+                    "(uid int not NULL," +
                     "category varchar(1) not null," +
                     " purposeOfVisit varchar(255)not null," +
                     " location varchar(255) not null," +
@@ -76,6 +75,11 @@ public class Database extends CreateConnection{
                     " validUpto date not null check (validupto>CURDATE())," +
                     "FOREIGN KEY(uid) REFERENCES userinfo(uid))";
              stmt.execute(sql); 
+             sql = "SET GLOBAL event_scheduler = ON ";
+             stmt.execute(sql);
+             sql = "CREATE  EVENT IF NOT EXISTS `RemoveInvalid` ON SCHEDULE EVERY 1 DAY STARTS CONCAT(DATE(NOW()), ' 00:00:01') ENDS CONCAT(DATE(NOW()+INTERVAL 19 YEAR ), ' 00:00:01') ON COMPLETION PRESERVE ENABLE " +
+            		 "DO DELETE FROM validity where validUpto<CURDATE()";
+             stmt.execute(sql);
    }
    catch(Exception e){ 
 	   System.out.println("Hey");;

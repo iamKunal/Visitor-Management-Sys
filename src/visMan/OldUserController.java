@@ -180,12 +180,28 @@ public class OldUserController implements Initializable {
 			}
 			tempVisitor = ch.getValidity(tempVisitor);
 			if(tempVisitor!=null){
+				int toggleIndex=-1;
+				switch (tempVisitor.getCategory()) {
+				case "C":
+					toggleIndex=0;
+					break;
+				case "V":
+					toggleIndex=1;
+					break;
+				case "O":
+					toggleIndex=2;
+					break;
+
+				default:
+					break;
+				}
+				category.selectToggle(category.getToggles().get(toggleIndex));
+				toggleBox.setDisable(true);
 				locationField.setText(tempVisitor.getLocation());
 				purposeField.setText(tempVisitor.getPurpose());
 				validityField.setText(Long.toString(ChronoUnit.DAYS.between(LocalDate.now(),tempVisitor.getValidityDate())));
 				locationField.setDisable(true);
 				purposeField.setDisable(true);
-				validityField.setDisable(true);
 			}
 			captureButton.setDisable(false);
 			searchUidButton.setDisable(true);

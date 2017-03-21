@@ -65,6 +65,16 @@ public class Database extends CreateConnection{
                    "FOREIGN KEY(uid) REFERENCES userinfo(uid))";
                    
             stmt.execute(sql);
+            
+            sql = "CREATE TABLE if not exists validity " +
+                    "(SNo int not NULL primary key AUTO_INCREMENT, " +
+                    "uid int not NULL," +
+                    " purposeOfVisit varchar(255)not null," +
+                    " location varchar(255) not null," +
+                    " gateNo int not null," +
+                    " validUpto date not null check (validupto>CURDATE())," +
+                    "FOREIGN KEY(uid) REFERENCES userinfo(uid))";
+             stmt.execute(sql); 
    }
    catch(Exception e){ 
 	   System.out.println("Hey");;

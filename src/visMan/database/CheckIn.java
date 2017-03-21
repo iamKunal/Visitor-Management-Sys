@@ -69,6 +69,29 @@ public class CheckIn extends CreateConnection{
         }
 		return visitor;
 	}
+	
+	public Visitor getValidity(Visitor visitor){
+		PreparedStatement statement = null;
+		try {
+            statement = conn.prepareStatement("select * from validity where uid=?");// and dateofbirth=?");
+            statement.setInt(1, visitor.getuID());
+//            statement.setString(3, visitor.getDateOfBirth());
+            ResultSet res = statement.executeQuery();
+            Visitor vis=Utils.toValidityVisitor(res);
+            statement.close();
+            return vis;  
+        } catch (Exception e) {
+        } finally {
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException e) {
+
+                }
+            }
+        }
+		return visitor;
+	}
 	public void insertReport(Visitor visitor){
 		PreparedStatement statement = null;
 		try {
@@ -79,6 +102,32 @@ public class CheckIn extends CreateConnection{
             statement.setString(4, visitor.getLocation());
             statement.setInt(5, Main.gateNumber);
             statement.setDate(6,java.sql.Date.valueOf(visitor.getValidityDate()));
+            statement.execute();
+            insertValidity(visitor);
+        } catch (Exception e) {
+        } finally {
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException e) {
+
+                }
+            }
+        }
+	}
+	public void insertValidity(Visitor visitor){
+		PreparedStatement statement = null;
+		try {
+			statement = conn.prepareStatement("delete from validity where uid=?");
+            statement.setInt(1, visitor.getuID());
+            statement.execute();
+            statement.close();
+            statement = conn.prepareStatement("insert into validity(uid,purposeOfVisit,location,gateNo,validUpto) values(?,?,?,?,?,?)");
+            statement.setInt(1, visitor.getuID());
+            statement.setString(2, visitor.getPurpose());
+            statement.setString(3, visitor.getLocation());
+            statement.setInt(4, Main.gateNumber);
+            statement.setDate(5,java.sql.Date.valueOf(visitor.getValidityDate()));
             statement.execute();
         } catch (Exception e) {
         } finally {
@@ -91,6 +140,8 @@ public class CheckIn extends CreateConnection{
             }
         }
 	}
+	
+	
 	public boolean isCheckedIn(Visitor oldVisitor){
 		PreparedStatement statement = null;
 		try {

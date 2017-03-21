@@ -178,6 +178,15 @@ public class OldUserController implements Initializable {
 				System.out.println("Image not present in imgdb");
 				;
 			}
+			tempVisitor = ch.getValidity(tempVisitor);
+			if(tempVisitor!=null){
+				locationField.setText(tempVisitor.getLocation());
+				purposeField.setText(tempVisitor.getPurpose());
+				validityField.setText(Long.toString(ChronoUnit.DAYS.between(LocalDate.now(),tempVisitor.getValidityDate())));
+				locationField.setDisable(true);
+				purposeField.setDisable(true);
+				validityField.setDisable(true);
+			}
 			captureButton.setDisable(false);
 			searchUidButton.setDisable(true);
 		}

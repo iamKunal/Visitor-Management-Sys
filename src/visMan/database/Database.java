@@ -48,7 +48,7 @@ public class Database extends CreateConnection{
                   " address varchar(255)not null," +                  
           		  "firstVisit timestamp DEFAULT CURRENT_TIMESTAMP," +
                   "lastVisit timestamp DEFAULT CURRENT_TIMESTAMP," +
-                  "noOfVisits int not null default 1)";
+                  "noOfVisits int not null default 0)";
                   
            stmt.execute(sql);
            sql = "CREATE TABLE if not exists report " +

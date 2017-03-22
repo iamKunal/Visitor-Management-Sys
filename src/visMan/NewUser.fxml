@@ -112,7 +112,7 @@
                         <Label text=":" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                         <Label text=":" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                         <Label text=":" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-                        <Label text="Validity" GridPane.rowIndex="8">
+                        <Label text="Validity (in days)" GridPane.rowIndex="8">
                            <font>
                               <Font name="System Bold" size="15.0" />
                            </font>
@@ -162,7 +162,7 @@
             </ButtonBar>
          </bottom>
          <top>
-            <Label text="Checkin New User" underline="true" BorderPane.alignment="CENTER">
+            <Label text="Checkin New Visitor" underline="true" BorderPane.alignment="CENTER">
                <font>
                   <Font name="Arial" size="27.0" />
                </font>

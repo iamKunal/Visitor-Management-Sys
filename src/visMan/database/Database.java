@@ -67,12 +67,12 @@ public class Database extends CreateConnection{
             stmt.execute(sql);
             
             sql = "CREATE TABLE if not exists validity " +
-                    "(uid int not NULL," +
+                    "(uid int primary key," +
                     "category varchar(1) not null," +
                     " purposeOfVisit varchar(255)not null," +
                     " location varchar(255) not null," +
                     " gateNo int not null," +
-                    " validUpto date not null check (validupto>CURDATE())," +
+                    " validUpto date not null check (validupto>CURDATE()+1)," +
                     "FOREIGN KEY(uid) REFERENCES userinfo(uid))";
              stmt.execute(sql); 
              sql = "SET GLOBAL event_scheduler = ON ";

@@ -1,5 +1,6 @@
 package visMan;
 
+import visMan.database.CheckOut;
 import visMan.utils.Utils;
 
 import java.io.File;
@@ -16,6 +17,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -38,9 +40,8 @@ public class MainController implements Initializable {
 	@FXML Button goButton;
 	@FXML
 	void submitGo(){
-		System.out.println(Utils.getToggleText(check) + " " + Utils.getToggleText(user));
         if(Utils.getToggleText(check).equals("Checkin")){
-        	if(Utils.getToggleText(user).equals("New User")){
+        	if(Utils.getToggleText(user).equals("New Visitor")){
         		try
         		{
 	    			// load the FXML resource
@@ -76,7 +77,7 @@ public class MainController implements Initializable {
 //	    			        }
 //	    				}
 //	    			}));
-	                stager.setTitle("Checkin New User");
+	                stager.setTitle("Checkin New Visitor");
 	                stager.showAndWait();
 	    		}
 	    		catch (Exception e)
@@ -84,7 +85,7 @@ public class MainController implements Initializable {
 	    			e.printStackTrace();
 	    		}
         	}
-        	else if(Utils.getToggleText(user).equals("Old User")){
+        	else if(Utils.getToggleText(user).equals("Old Visitor")){
         		try
         		{
 	    			// load the FXML resource
@@ -120,7 +121,7 @@ public class MainController implements Initializable {
 //	    			        }
 //	    				}
 //	    			}));
-	                stager.setTitle("Checkin Old User");
+	                stager.setTitle("Checkin Old Visitor");
 	                stager.showAndWait();
 	    		}
 	    		catch (Exception e)
@@ -129,7 +130,60 @@ public class MainController implements Initializable {
 	    		}
         	}
         }
-
+        else{
+        	try
+    		{
+        		CheckOut ch = new CheckOut();
+        		if(ch.getCheckOutList()==null || ch.getCheckOutList().size()==0){
+					Alert alert = new Alert(AlertType.INFORMATION);
+					alert.setTitle("Checkout Error");
+					alert.setHeaderText("No Visitor Checked In.");
+					alert.setContentText("There is no Visitor currently Checked In.");
+					alert.showAndWait();
+        		}
+        		else{
+	    			// load the FXML resource
+	                FXMLLoader loader = new FXMLLoader(getClass().getResource("CheckOut.fxml"));
+	                Parent checkOutRoot = (Parent) loader.load();
+	                Scene checkOut = new Scene(checkOutRoot);
+	    			checkOut.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+	//                NewUserController controller = (NewUserController) loader.getController();
+	//                control.initData(selectedSong);
+	                Stage stager = new Stage();
+	                stager.setScene(checkOut);
+	//                stager.initStyle(StageStyle.UNDECORATED);
+	                stager.setResizable(false);
+	                stager.initModality(Modality.WINDOW_MODAL);
+	                stager.initOwner(goButton.getScene().getWindow());
+	    			stager.setOnHiding((new EventHandler<WindowEvent>() {
+	    				public void handle(WindowEvent we)
+	    				{
+	    			        mainRoot.setDisable(false);
+	//    			        if(NewUserController.openStage!=null){
+	//    			        	NewUserController.openStage.close();
+	//    			        	NewUserController.openStage=null;
+	//    			        }
+	    				}
+	    			}));
+	//    			stager.setOnCloseRequest((new EventHandler<WindowEvent>() {
+	//    				public void handle(WindowEvent we)
+	//    				{
+	//    			        mainRoot.setDisable(false);
+	//    			        if(NewUserController.openStage!=null){
+	//    			        	NewUserController.openStage.close();
+	//    			        	NewUserController.openStage=null;
+	//    			        }
+	//    				}
+	//    			}));
+	                stager.setTitle("Check Out Visitor");
+	                stager.showAndWait();
+        		}
+    		}
+    		catch (Exception e)
+    		{
+    			e.printStackTrace();
+    		}
+        }
         deleteTempData();
 		
 	}

@@ -45,7 +45,7 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <Label text="VID">
+                        <Label text="Visitor ID">
                            <font>
                               <Font name="System Bold" size="15.0" />
                            </font>
@@ -91,7 +91,7 @@
                               <Font name="System Bold" size="15.0" />
                            </font>
                         </Label>
-                        <Label text="Validity" GridPane.rowIndex="8">
+                        <Label text="Validity (in days)" GridPane.rowIndex="8">
                            <font>
                               <Font name="System Bold" size="15.0" />
                            </font>
@@ -171,7 +171,7 @@
             </ButtonBar>
          </bottom>
          <top>
-            <Label text="Checkin Old User" underline="true" BorderPane.alignment="CENTER">
+            <Label text="Checkin Old Visitor" underline="true" BorderPane.alignment="CENTER">
                <font>
                   <Font name="Arial" size="27.0" />
                </font>

@@ -8,7 +8,7 @@ import javafx.scene.control.ToggleGroup;
 import visMan.utils.Utils;
 
 public class Visitor {
-	final String SEP=" - ";
+	final String SEP="     |     ";
 	private int uID;
 	private String name, gender,contact,dateOfBirth,address,category,purpose,location;
 	private LocalDate validity;
@@ -148,7 +148,9 @@ public class Visitor {
 	}
 	@Override
 	public String toString() {
-		return name + SEP + gender + SEP + contact + SEP + dateOfBirth + SEP + address + SEP + category + SEP + purpose;
+//		return "ABC";
+		return String.format("%09d", uID) + "     " + SEP + String.format("%1$-30s",name)+ SEP + contact;
+//		return name + SEP + gender + SEP + contact + SEP + dateOfBirth + SEP + address + SEP + category + SEP + purpose;
 	}
 	public boolean equals(Visitor visitor){
 		   if (this==visitor) return true;

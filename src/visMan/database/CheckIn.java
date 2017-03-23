@@ -102,10 +102,6 @@ public class CheckIn extends CreateConnection{
             statement.setInt(6, Main.gateNumber);
             statement.setDate(7,java.sql.Date.valueOf(visitor.getValidityDate()));
             statement.execute();
-            statement.close();
-            statement = conn.prepareStatement("update userinfo SET noOfVisits=noOfVisits+1 where uid=?");
-            statement.setInt(1, visitor.getuID());
-            statement.execute();
             insertValidity(visitor);
         } catch (Exception e) {
         } finally {

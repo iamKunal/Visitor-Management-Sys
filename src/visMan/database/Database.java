@@ -77,7 +77,7 @@ public class Database extends CreateConnection{
              stmt.execute(sql); 
              sql="CREATE TRIGGER updatelastvisit AFTER INSERT ON report "+
              "FOR EACH ROW UPDATE userinfo set lastVisit=NEW.inTimestamp, noOfVisits=noOfVisits+1 where uid=NEW.uid";
-             
+             stmt.execute(sql); 
              sql = "SET GLOBAL event_scheduler = ON ";
              stmt.execute(sql);
              sql = "CREATE  EVENT IF NOT EXISTS `RemoveInvalid` ON SCHEDULE EVERY 1 DAY STARTS CONCAT(DATE(NOW()), ' 00:00:01') ENDS CONCAT(DATE(NOW()+INTERVAL 19 YEAR ), ' 00:00:01') ON COMPLETION PRESERVE ENABLE " +

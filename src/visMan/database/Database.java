@@ -76,25 +76,21 @@ public class Database extends CreateConnection{
                     "FOREIGN KEY(uid) REFERENCES userinfo(uid))";
              stmt.execute(sql); 
              
-             sql="create procedure check_validity(IN validUpto date) "+
-             "begin "+
-             "if validUpto<=CURDATE() + INTERVAL 1 DAY then "+
-             "SIGNAL SQLSTATE '45000' "+
-             "set message_text='record with 1 day validity is not inserted'; "+
-             "end if; "+
-             "end;";
-             
-             stmt.execute(sql); 
-        
-             
+          
+             sql="DROP TRIGGER IF EXISTS check_validity_before_insert";
+             stmt.execute(sql);
              sql="create trigger check_validity_before_insert before insert on validity "+
             	 "for each row "+ 
                  "begin "+
-            	 "call check_validity(NEW.validUpto); "+
-             	 "end;";
+                 "if NEW.validUpto<=CURDATE() + INTERVAL 1 DAY then "+
+                 "SIGNAL SQLSTATE '45000' "+
+                 "set message_text='record with 1 day validity is not inserted'; "+
+                 "end if; "+
+             	 "end";
              stmt.execute(sql);
              
-             
+             sql="DROP TRIGGER IF EXISTS updatelastvisit";
+             stmt.execute(sql);
              sql="CREATE TRIGGER updatelastvisit AFTER INSERT ON report "+
              "FOR EACH ROW UPDATE userinfo set lastVisit=NEW.inTimestamp, noOfVisits=noOfVisits+1 where uid=NEW.uid";
              stmt.execute(sql); 
@@ -105,7 +101,8 @@ public class Database extends CreateConnection{
              stmt.execute(sql);
    }
    catch(Exception e){ 
-	   System.out.println("Hey");;
+	   System.out.println("Hey");
+	   e.printStackTrace();
    }
 }
 }

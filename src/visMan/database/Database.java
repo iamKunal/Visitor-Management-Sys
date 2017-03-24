@@ -72,9 +72,29 @@ public class Database extends CreateConnection{
                     " purposeOfVisit varchar(255)not null," +
                     " location varchar(255) not null," +
                     " gateNo int not null," +
-                    " validUpto date not null check (validupto>CURDATE()+1)," +
+                    " validUpto date not null," +
                     "FOREIGN KEY(uid) REFERENCES userinfo(uid))";
              stmt.execute(sql); 
+             
+             sql="create procedure check_validity(IN validUpto date) "+
+             "begin "+
+             "if validUpto<=CURDATE() + INTERVAL 1 DAY then "+
+             "SIGNAL SQLSTATE '45000' "+
+             "set message_text='record with 1 day validity is not inserted'; "+
+             "end if; "+
+             "end;";
+             
+             stmt.execute(sql); 
+        
+             
+             sql="create trigger check_validity_before_insert before insert on validity "+
+            	 "for each row "+ 
+                 "begin "+
+            	 "call check_validity(NEW.validUpto); "+
+             	 "end;";
+             stmt.execute(sql);
+             
+             
              sql="CREATE TRIGGER updatelastvisit AFTER INSERT ON report "+
              "FOR EACH ROW UPDATE userinfo set lastVisit=NEW.inTimestamp, noOfVisits=noOfVisits+1 where uid=NEW.uid";
              stmt.execute(sql); 

@@ -1,6 +1,6 @@
 package visMan.database;
 
-import java.sql.PreparedStatement;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -21,7 +21,7 @@ public class ReportGenerator extends CreateConnection {
         LocalDate today = LocalDate.now();
         String subFolder = String.format("%02d",today.getMonthValue()) + "-"+today.getYear();
         dailyReport();
-//        if(LocalDate.now().getDayOfMonth()==1)
+        if(LocalDate.now().getDayOfMonth()==1)
         	monthlyReport();
 	}
 	private static String rowString(String [] toWrite){

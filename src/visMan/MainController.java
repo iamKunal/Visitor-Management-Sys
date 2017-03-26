@@ -9,7 +9,6 @@ import java.util.ResourceBundle;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -21,7 +20,6 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import javafx.stage.WindowEvent;
 
 public class MainController implements Initializable {
@@ -49,7 +47,7 @@ public class MainController implements Initializable {
 	                Parent newUserRoot = (Parent) loader.load();
 	                Scene newUser = new Scene(newUserRoot);
 	    			newUser.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-	                NewUserController controller = (NewUserController) loader.getController();
+//	                NewUserController controller = (NewUserController) loader.getController();
 	//                control.initData(selectedSong);
 	                Stage stager = new Stage();
 	                stager.setScene(newUser);
@@ -93,7 +91,7 @@ public class MainController implements Initializable {
 	                Parent oldUserRoot = (Parent) loader.load();
 	                Scene oldUser = new Scene(oldUserRoot);
 	    			oldUser.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-	                OldUserController controller = (OldUserController) loader.getController();
+//	                OldUserController controller = (OldUserController) loader.getController();
 	//                control.initData(selectedSong);
 	                Stage stager = new Stage();
 	                stager.setScene(oldUser);

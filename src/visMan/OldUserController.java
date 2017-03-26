@@ -16,9 +16,7 @@ import javafx.scene.control.Alert.AlertType;
 import java.io.File;
 import java.net.URL;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
-import java.util.Locale.Category;
 import java.util.Arrays;
 import java.util.ResourceBundle;
 
@@ -104,7 +102,7 @@ public class OldUserController implements Initializable {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("WebCamCapture.fxml"));
         Parent webCamRoot = (Parent) loader.load();
         Scene newUser = new Scene(webCamRoot,400,600);
-        WebCamCaptureController controller = (WebCamCaptureController) loader.getController();
+//        WebCamCaptureController controller = (WebCamCaptureController) loader.getController();
 //        control.initData(selectedSong);
         openStage = new Stage();
         openStage.setScene(newUser);
@@ -345,7 +343,7 @@ public class OldUserController implements Initializable {
 		});
 		dateOfBirth.valueProperty().addListener((o,oldValue,newValue) -> {
 			if(newValue!=null){
-				DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+//				DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
 				LocalDate localDate = LocalDate.now();
 				if(ChronoUnit.DAYS.between(newValue,localDate)<0 || ChronoUnit.YEARS.between(newValue,localDate)>150)
 					dateOfBirth.setValue(localDate);

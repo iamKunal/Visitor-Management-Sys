@@ -4,11 +4,6 @@ import javafx.fxml.FXML;
 
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.print.PageLayout;
-import javafx.print.PageOrientation;
-import javafx.print.Paper;
-import javafx.print.Printer;
-import javafx.print.PrinterJob;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -28,21 +23,16 @@ import java.time.temporal.ChronoUnit;
 import java.util.Arrays;
 import java.util.ResourceBundle;
 
-import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.transform.Scale;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import javafx.stage.WindowEvent;
 import visMan.database.CheckIn;
 import visMan.utils.Utils;
 
@@ -104,7 +94,7 @@ public class NewUserController implements Initializable {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("WebCamCapture.fxml"));
         Parent webCamRoot = (Parent) loader.load();
         Scene newUser = new Scene(webCamRoot,400,600);
-        WebCamCaptureController controller = (WebCamCaptureController) loader.getController();
+//        WebCamCaptureController controller = (WebCamCaptureController) loader.getController();
 //        control.initData(selectedSong);
         openStage = new Stage();
         openStage.setScene(newUser);

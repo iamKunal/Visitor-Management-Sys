@@ -1,8 +1,6 @@
 package visMan.database;
 
 import java.sql.*;
-import java.text.SimpleDateFormat;
-
 import visMan.Main;
 import visMan.Visitor;
 import visMan.utils.Utils;

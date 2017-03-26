@@ -2,8 +2,6 @@ package visMan;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeFormatterBuilder;
-
 import javafx.scene.control.ToggleGroup;
 import visMan.utils.Utils;
 
@@ -153,8 +151,8 @@ public class Visitor {
 //		return name + SEP + gender + SEP + contact + SEP + dateOfBirth + SEP + address + SEP + category + SEP + purpose;
 	}
 	public boolean equals(Visitor visitor){
-		   if (this==visitor) return true;
 		   if (this == null) return false;
+		   if (this==visitor) return true;
 		   if (this.getClass() != visitor.getClass()) return false;
 		   boolean same=true;
 		   same&=(this.uID==visitor.getuID())

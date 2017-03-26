@@ -18,8 +18,8 @@ public class ReportGenerator extends CreateConnection {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Database db = new Database();
-        LocalDate today = LocalDate.now();
-        String subFolder = String.format("%02d",today.getMonthValue()) + "-"+today.getYear();
+//        LocalDate today = LocalDate.now();
+//        String subFolder = String.format("%02d",today.getMonthValue()) + "-"+today.getYear();
         dailyReport();
         if(LocalDate.now().getDayOfMonth()==1)
         	monthlyReport();
@@ -104,7 +104,7 @@ public class ReportGenerator extends CreateConnection {
 					"FROM userinfo RIGHT JOIN report ON userinfo.uid=report.uid WHERE MONTH(inTimeStamp)=MONTH(CURDATE())-1 OR MONTH(outTimeStamp)=MONTH(CURDATE())-1 ORDER BY inTimeStamp ASC;";
 	        ResultSet res=statement.executeQuery(sql);
 	        LocalDate today = LocalDate.now();
-	        String subFolder = String.format("%02d",today.getMonthValue()) + "-"+today.getYear();
+//	        String subFolder = String.format("%02d",today.getMonthValue()) + "-"+today.getYear();
 	//        f.(rowString(header));
 	        File f=new File(FOLDERNAME);
 	        f.mkdir();

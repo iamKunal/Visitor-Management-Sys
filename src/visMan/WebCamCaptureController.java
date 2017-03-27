@@ -49,7 +49,7 @@ public class WebCamCaptureController implements Initializable
 	// a flag to change the button behavior
 	private boolean cameraActive = false;
 	// the id of the camera to be used
-	private static int cameraId = 0;
+	public static int cameraId = 0;
 	
 	/**
 	 * The action triggered by pushing the button on the GUI

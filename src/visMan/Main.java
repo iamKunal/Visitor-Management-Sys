@@ -45,7 +45,12 @@ public class Main extends Application {
 	
 	public static void main(String[] args) {
 		// load the native OpenCV library
-
+		if(args.length==0){
+			WebCamCaptureController.cameraId=0;
+		}
+		else{
+			WebCamCaptureController.cameraId=Integer.parseInt(args[0]);
+		}
 		System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
 		Database db = new Database();
 		launch(args);

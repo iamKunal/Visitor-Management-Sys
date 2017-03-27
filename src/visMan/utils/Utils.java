@@ -19,6 +19,7 @@ import javafx.print.PageLayout;
 import javafx.print.PageOrientation;
 import javafx.print.Paper;
 import javafx.print.Printer;
+import javafx.print.Printer.MarginType;
 import javafx.print.PrinterJob;
 import javafx.scene.Node;
 import javafx.scene.control.RadioButton;
@@ -62,7 +63,8 @@ public final class Utils
 //		double pHeight= paper.getHeight();
 //		System.out.println("a" + pHeight);
 		Printer printer = Printer.getDefaultPrinter();
-		PageLayout pageLayout = printer.createPageLayout(paper, PageOrientation.LANDSCAPE, 54,54,54,54);
+//		node.setRotate(90);
+		PageLayout pageLayout = printer.createPageLayout(paper, PageOrientation.LANDSCAPE, MarginType.HARDWARE_MINIMUM);
 //		double dpi = pageLayout.getPrintableHeight()/pHeight;
 //		System.out.println(pageLayout.getPrintableHeight());
 //		double marginIn = 1.5;
@@ -76,6 +78,7 @@ public final class Utils
 			   printerJob.endJob();
 		scaleX = 1/scaleX;
 		scaleY = 1/scaleY;
+//		node.setRotate(270);
         node.getTransforms().add(new Scale(scaleX, scaleY));
 	}
 	public static String getToggleText(ToggleGroup t){

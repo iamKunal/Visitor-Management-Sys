@@ -43,6 +43,7 @@ public class ReportGenerator extends CreateConnection {
 					"FROM userinfo RIGHT JOIN report ON userinfo.uid=report.uid WHERE DATE(inTimeStamp)=CURDATE()-INTERVAL 1 DAY OR DATE(outTimeStamp)=CURDATE()-INTERVAL 1 DAY ORDER BY inTimeStamp ASC;";
 	        ResultSet res=statement.executeQuery(sql);
 	        LocalDate today = LocalDate.now();
+	        today=today.minusDays(1);
 	        String subFolder = String.format("%02d",today.getMonthValue()) + "-"+today.getYear();
 	//        f.(rowString(header));
 	        File f=new File(FOLDERNAME);

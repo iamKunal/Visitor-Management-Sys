@@ -82,10 +82,13 @@
                                           <Insets left="5.0" />
                                        </GridPane.margin>
                                     </Label>
-                                    <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" maxWidth="1.7976931348623157E308" prefHeight="41.0" prefWidth="261.0" text="Sign. of Visited Person" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                                    <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" graphicTextGap="0.0" maxWidth="1.7976931348623157E308" prefHeight="41.0" prefWidth="261.0" text="Sign. of&#10;Visited Person" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="4">
                                        <font>
-                                          <Font size="12.0" />
+                                          <Font name="Arial" size="8.0" />
                                        </font>
+                                       <GridPane.margin>
+                                          <Insets bottom="-10.0" top="-10.0" />
+                                       </GridPane.margin>
                                     </Label>
                                  </children>
                               </GridPane>
@@ -150,12 +153,18 @@
                                              <HBox.margin>
                                                 <Insets left="-75.0" right="-75.0" />
                                              </HBox.margin>
+                                             <font>
+                                                <Font name="System Bold" size="15.0" />
+                                             </font>
                                           </Label>
                                           <ImageView fx:id="visitorImage" fitHeight="216.0" fitWidth="180.0" pickOnBounds="true" preserveRatio="true" />
                                           <Label fx:id="locationField" alignment="CENTER" minWidth="216.0" prefWidth="216.0" rotate="270.0" text="Location : ">
                                              <HBox.margin>
                                                 <Insets left="-75.0" right="-75.0" />
                                              </HBox.margin>
+                                             <font>
+                                                <Font name="System Bold" size="15.0" />
+                                             </font>
                                           </Label>
                                        </children>
                                     </HBox>

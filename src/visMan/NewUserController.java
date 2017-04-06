@@ -142,7 +142,8 @@ public class NewUserController implements Initializable {
 		newVisitor.setValidity(LocalDate.now().plusDays(Integer.parseInt(validityField.getText())));
 		CheckIn ch = new CheckIn();
 		Visitor tempVisitor = ch.alreadyInserted(newVisitor);
-		if(tempVisitor==null)
+//		System.out.println(tempVisitor);
+		if(tempVisitor==null || tempVisitor.getuID()==0)
 			try
 			{
 				// load the FXML resource
@@ -301,7 +302,7 @@ public class NewUserController implements Initializable {
 		});
 		dateOfBirth.valueProperty().addListener((o,oldValue,newValue) -> {
 			if(newValue!=null){
-				DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+//				DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
 				LocalDate localDate = LocalDate.now();
 				if(ChronoUnit.DAYS.between(newValue,localDate)<0 || ChronoUnit.YEARS.between(newValue,localDate)>150)
 					dateOfBirth.setValue(localDate);

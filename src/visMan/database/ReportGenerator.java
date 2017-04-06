@@ -21,7 +21,9 @@ public class ReportGenerator extends CreateConnection {
 //        LocalDate today = LocalDate.now();
 //        String subFolder = String.format("%02d",today.getMonthValue()) + "-"+today.getYear();
         dailyReport();
-        if(LocalDate.now().getDayOfMonth()==1)
+        LocalDate today = LocalDate.now().minusMonths(1);
+        File f = new File(FOLDERNAME + "/" + today.getYear() + "-" + String.format("%02d",today.getMonthValue()) + "/" +Utils.toTitleCase(today.getMonth().name().toLowerCase())+"-"+today.getYear()+".csv");
+        if(!f.isFile())
         	monthlyReport();
 	}
 	private static String rowString(String [] toWrite){
@@ -104,7 +106,7 @@ public class ReportGenerator extends CreateConnection {
 			sql = "SELECT report.uid,report.name,category,location,purposeOFVisit,inTimeStamp,outTimeStamp,validUpto,gateNo,gender,contact,dateOfBirth,address "+
 					"FROM userinfo RIGHT JOIN report ON userinfo.uid=report.uid WHERE MONTH(inTimeStamp)=MONTH(CURDATE())-1 OR MONTH(outTimeStamp)=MONTH(CURDATE())-1 ORDER BY inTimeStamp ASC;";
 	        ResultSet res=statement.executeQuery(sql);
-	        LocalDate today = LocalDate.now();
+	        LocalDate today = LocalDate.now().minusMonths(1);
 //	        String subFolder = String.format("%02d",today.getMonthValue()) + "-"+today.getYear();
 	//        f.(rowString(header));
 	        File f=new File(FOLDERNAME);

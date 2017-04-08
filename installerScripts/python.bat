@@ -1,0 +1,1 @@
+Python36-32\python.exe %*

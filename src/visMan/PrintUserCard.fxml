@@ -52,7 +52,7 @@
                                           <Insets left="5.0" />
                                        </GridPane.margin>
                                     </Label>
-                                    <Label prefWidth="65.0" text="Age :" GridPane.rowIndex="1">
+                                    <Label text="Age :" GridPane.rowIndex="1">
                                        <font>
                                           <Font name="System Bold" size="15.0" />
                                        </font>
@@ -115,7 +115,7 @@
                                                 </Label>
                                                 <Label text="INDIAN INSTITUTE OF TECHNOLOGY INDORE" textFill="#1f497d">
                                                    <font>
-                                                      <Font name="System Bold" size="12.2" />
+                                                      <Font name="Arial Narrow Bold" size="14.0" />
                                                    </font>
                                                    <VBox.margin>
                                                       <Insets bottom="-20.0" />

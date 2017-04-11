@@ -1,6 +1,8 @@
 package visMan.database;
 
 import java.sql.*;
+
+import javafx.collections.ObservableList;
 import visMan.Main;
 import visMan.Visitor;
 import visMan.utils.Utils;
@@ -41,6 +43,28 @@ public class CheckIn extends CreateConnection{
             }
         }
 		return visitor;
+	}
+	public  ObservableList<Visitor> alreadyInsertedByPhone(Visitor visitor){
+		PreparedStatement statement = null;
+		try {
+            statement = conn.prepareStatement("select * from userinfo where contact=?");// and dateofbirth=?");
+            statement.setString(1, visitor.getContact());
+//            statement.setString(3, visitor.getDateOfBirth());
+            ResultSet res = statement.executeQuery();
+            ObservableList<Visitor> vis=Utils.toVisitorList(res);
+            statement.close();
+            return vis;  
+        } catch (Exception e) {
+        } finally {
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException e) {
+
+                }
+            }
+        }
+		return null;
 	}
 	public Visitor alreadyInserted(Visitor visitor){
 		PreparedStatement statement = null;

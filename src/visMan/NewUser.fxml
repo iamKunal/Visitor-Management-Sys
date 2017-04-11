@@ -85,12 +85,12 @@
                            </font></Label>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="50.0" GridPane.columnIndex="2" GridPane.rowIndex="5">
                            <children>
-                              <RadioButton mnemonicParsing="false" text="Casual">
+                              <RadioButton mnemonicParsing="false" text="Others">
                                  <toggleGroup>
                                     <ToggleGroup fx:id="category" />
                                  </toggleGroup></RadioButton>
                               <RadioButton id="genderButton" mnemonicParsing="false" text="Vendor" toggleGroup="$category" />
-                              <RadioButton mnemonicParsing="false" text="Others" toggleGroup="$category" />
+                              <RadioButton mnemonicParsing="false" text="Casual" toggleGroup="$category" />
                            </children>
                         </HBox>
                         <Label text="Location" GridPane.rowIndex="6">

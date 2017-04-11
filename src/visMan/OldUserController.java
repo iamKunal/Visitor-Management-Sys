@@ -7,7 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-
+import javafx.scene.control.ChoiceDialog;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
@@ -17,11 +17,15 @@ import java.io.File;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 
 import javafx.scene.control.Label;
@@ -77,7 +81,7 @@ public class OldUserController implements Initializable {
 	public static Stage openStage=null;
 	private void checkValuesSearch(){
 		boolean correct=true;
-		correct&=(!nameField.getText().trim().isEmpty());
+//		correct&=(!nameField.getText().trim().isEmpty());
 //		correct&=(!Utils.getToggleText(gender).equals("null"));
 		correct&=(!contactField.getText().trim().isEmpty());
 //		correct&=!(dateOfBirth.getValue()==null);
@@ -151,58 +155,82 @@ public class OldUserController implements Initializable {
 		CheckIn ch = new CheckIn();
 		trimAll();
 		currentVisitor = new Visitor(nameField.getText(),"",contactField.getText(),"","","","");
-		Visitor tempVisitor = ch.alreadyInserted(currentVisitor);
-		if(tempVisitor==null){
+		ObservableList<Visitor> tempVisitorList = ch.alreadyInsertedByPhone(currentVisitor);
+		boolean gotName=false;
+		Visitor tempVisitor = new Visitor();
+		if(tempVisitorList==null || tempVisitorList.size()==0){
 			errorLabel.setText("VID not Found. Please enter correct details\nor Checkin as New User.");
 		}
 		else{
-			uidField.setDisable(false);
-			uidField.setText(String.format("%09d", tempVisitor.getuID()));
-			currentVisitor.setuID(tempVisitor.getuID());
-			dateOfBirth.setDisable(false);
-			dateOfBirth.setValue(LocalDate.parse(tempVisitor.getDateOfBirth()));
-			addressField.setDisable(false);
-			addressField.setText(tempVisitor.getAddress());
-			toggleBox.setDisable(false);
-			locationField.setDisable(false);
-			purposeField.setDisable(false);
-			validityField.setDisable(false);
-			try{
-		        File file = new File(Main.IMGDB + "/" + String.format("%09d", tempVisitor.getuID()) +".jpg");
-		        Image image = new Image(file.toURI().toString());
-				userImage.setImage(image);
+			List<String> choices = new ArrayList<>();
+			for(Visitor v : tempVisitorList){
+				choices.add(v.getName());
 			}
-			catch (Exception e) {
-				System.out.println("Image not present in imgdb");
-				;
-			}
-			tempVisitor = ch.getValidity(tempVisitor);
-			if(tempVisitor!=null){
-				int toggleIndex=-1;
-				switch (tempVisitor.getCategory()) {
-				case "C":
-					toggleIndex=0;
-					break;
-				case "V":
-					toggleIndex=1;
-					break;
-				case "O":
-					toggleIndex=2;
-					break;
+			ChoiceDialog<String> dialog = new ChoiceDialog<>(tempVisitorList.get(0).getName(), choices);
+			dialog.setTitle("Select Name");
+			dialog.setHeaderText("Select the name corresponding to the contact number you entered.");
+			dialog.setContentText("Choose name :");
 
-				default:
-					break;
-				}
-				category.selectToggle(category.getToggles().get(toggleIndex));
-				toggleBox.setDisable(true);
-				locationField.setText(tempVisitor.getLocation());
-				purposeField.setText(tempVisitor.getPurpose());
-				validityField.setText(Long.toString(ChronoUnit.DAYS.between(LocalDate.now(),tempVisitor.getValidityDate())));
-				locationField.setDisable(true);
-				purposeField.setDisable(true);
+			// Traditional way to get the response value.
+			Optional<String> result = dialog.showAndWait();
+			if (result.isPresent()){
+			    gotName=true;
 			}
-			captureButton.setDisable(false);
-			searchUidButton.setDisable(true);
+			if(gotName){
+				tempVisitor.setName(result.get());
+				tempVisitor.setContact(contactField.getText());
+				tempVisitor = ch.alreadyInserted(tempVisitor);
+				// The Java 8 way to get the response value (with lambda expression).
+				uidField.setDisable(false);
+				uidField.setText(String.format("%09d", tempVisitor.getuID()));
+				nameField.setDisable(false);
+				nameField.setText(tempVisitor.getName());
+				currentVisitor.setuID(tempVisitor.getuID());
+				dateOfBirth.setDisable(false);
+				dateOfBirth.setValue(LocalDate.parse(tempVisitor.getDateOfBirth()));
+				addressField.setDisable(false);
+				addressField.setText(tempVisitor.getAddress());
+				toggleBox.setDisable(false);
+				locationField.setDisable(false);
+				purposeField.setDisable(false);
+				validityField.setDisable(false);
+				try{
+			        File file = new File(Main.IMGDB + "/" + String.format("%09d", tempVisitor.getuID()) +".jpg");
+			        Image image = new Image(file.toURI().toString());
+					userImage.setImage(image);
+				}
+				catch (Exception e) {
+					System.out.println("Image not present in imgdb");
+					;
+				}
+				tempVisitor = ch.getValidity(tempVisitor);
+				if(tempVisitor!=null){
+					int toggleIndex=-1;
+					switch (tempVisitor.getCategory()) {
+					case "C":
+						toggleIndex=2;
+						break;
+					case "V":
+						toggleIndex=1;
+						break;
+					case "O":
+						toggleIndex=0;
+						break;
+	
+					default:
+						break;
+					}
+					category.selectToggle(category.getToggles().get(toggleIndex));
+					toggleBox.setDisable(true);
+					locationField.setText(tempVisitor.getLocation());
+					purposeField.setText(tempVisitor.getPurpose());
+					validityField.setText(Long.toString(ChronoUnit.DAYS.between(LocalDate.now(),tempVisitor.getValidityDate())));
+					locationField.setDisable(true);
+					purposeField.setDisable(true);
+				}
+				captureButton.setDisable(false);
+				searchUidButton.setDisable(true);
+			}
 		}
 	}
 	// Event Listener on Button[#reviewButton].onAction
@@ -269,6 +297,8 @@ public class OldUserController implements Initializable {
 			category.selectToggle(null);
 			uidField.setDisable(true);
 			addressField.setText("");
+			nameField.setDisable(true);
+			nameField.setText("");
 			addressField.setDisable(true);
 			toggleBox.setDisable(true);
 			locationField.setText("");

@@ -56,7 +56,7 @@
                               <Font name="System Bold" size="15.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="nameField" promptText="Enter name..." GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                        <TextField fx:id="nameField" disable="true" promptText="Enter name..." GridPane.columnIndex="2" GridPane.rowIndex="1" />
                         <Label text="Date of Birth" GridPane.rowIndex="2">
                            <font>
                               <Font name="System Bold" size="15.0" />
@@ -99,13 +99,12 @@
                         <TextField fx:id="validityField" disable="true" promptText="Enter Validity in number of days..." text="1" GridPane.columnIndex="2" GridPane.rowIndex="8" />
                         <HBox fx:id="toggleBox" alignment="CENTER" disable="true" prefHeight="100.0" prefWidth="200.0" spacing="50.0" GridPane.columnIndex="2" GridPane.rowIndex="5">
                            <children>
-                              <RadioButton mnemonicParsing="false" text="Casual">
+                              <RadioButton mnemonicParsing="false" text="Others">
                                  <toggleGroup>
                                     <ToggleGroup fx:id="category" />
-                                 </toggleGroup>
-                              </RadioButton>
+                                 </toggleGroup></RadioButton>
                               <RadioButton id="genderButton" mnemonicParsing="false" text="Vendor" toggleGroup="$category" />
-                              <RadioButton mnemonicParsing="false" text="Others" toggleGroup="$category" />
+                              <RadioButton mnemonicParsing="false" text="Casual" toggleGroup="$category" />
                            </children>
                         </HBox>
                         <TextField fx:id="purposeField" disable="true" promptText="Enter Purpose of Visit..." GridPane.columnIndex="2" GridPane.rowIndex="7" />

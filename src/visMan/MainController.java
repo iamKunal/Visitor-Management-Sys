@@ -36,6 +36,40 @@ public class MainController implements Initializable {
 	@FXML ToggleGroup gateNo;
 	@FXML VBox mainRoot;
 	@FXML Button goButton;
+
+    @FXML
+    void manualReportScene() {
+    	try{
+	        FXMLLoader loader = new FXMLLoader(getClass().getResource("ManualReport.fxml"));
+	        Parent manualReportRoot = (Parent) loader.load();
+	        Scene manualReport = new Scene(manualReportRoot);
+			manualReport.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+	//        NewUserController controller = (NewUserController) loader.getController();
+	//                control.initData(selectedSong);
+	        Stage stager = new Stage();
+	        stager.setScene(manualReport);
+	//        stager.initStyle(StageStyle.UNDECORATED);
+	        stager.setResizable(false);
+	        stager.initModality(Modality.WINDOW_MODAL);
+	        stager.initOwner(goButton.getScene().getWindow());
+	//		stager.setOnCloseRequest((new EventHandler<WindowEvent>() {
+	//			public void handle(WindowEvent we)
+	//			{
+	//		        mainRoot.setDisable(false);
+	//		        if(NewUserController.openStage!=null){
+	//		        	NewUserController.openStage.close();
+	//		        	NewUserController.openStage=null;
+	//		        }
+	//			}
+	//		}));
+	        stager.setTitle("Manual Report Generation");
+	        stager.showAndWait();
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+    }
 	@FXML
 	void submitGo(){
         if(Utils.getToggleText(check).equals("Checkin")){

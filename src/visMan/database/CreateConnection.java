@@ -8,7 +8,7 @@ public class CreateConnection {
     static final String USER = "root";
     static final String PASS = "toor";
     static final String timeConvert = "?zeroDateTimeBehavior=convertToNull";
-    CreateConnection() {
+    public CreateConnection() {
         try {
         	 Class.forName(JDBC_DRIVER);
              conn = DriverManager.getConnection(DB_URL+"visitormanagement" +timeConvert, USER, PASS);

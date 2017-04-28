@@ -1,0 +1,56 @@
+e879d96,Kunal Gupta,2 weeks ago,Added Manual Report Generation Functionality.
+78bcf5e,Kunal Gupta,2 weeks ago,Changed the Old Visitor Search Functionality. - Also rearranged the Toggles for Purpose of Visit.
+ec082cc,Kunal Gupta,3 weeks ago,Changes to Print UI, bug fixes and improvements.
+26ae871,Kunal Gupta,3 weeks ago,Added Installer & Runner Scripts for the Sofwtare.
+ad11fb0,Kunal Gupta,3 weeks ago,Improvements and bug fixes. -Fixed ReportGenerator Monthly Report bug -Minor Changes in UI
+3768d82,Kunal Gupta,5 weeks ago,Bug Fixes and Improvements.
+ed6657b,Kunal Gupta,5 weeks ago,Fixed Report Generator making filename=reportday+1
+3a37791,Kunal Gupta,5 weeks ago,Resolved errors and warning.
+80eabdf,Kunal Sikri,5 weeks ago,monthly report added
+507c97f,Kunal Gupta,5 weeks ago,Added Report Generator and Removed Previous Bugs.
+f19520b,Kunal Sikri,5 weeks ago,Resolved 1 day validity insertion in table
+ceb66d3,Kunal Gupta,5 weeks ago,Fixed Trigger Statement not Executed.
+f2607d3,Kunal Gupta,5 weeks ago,LastVisit and NumberOfVisits updated via Trigger.
+55c97c0,Kunal Gupta,5 weeks ago,No of Visits updated when user checks in next time. - Last visit still needs to be updated.
+4a5ebe4,Kunal Gupta,5 weeks ago,All functions fully added and working - Added Checkout and tweaked UI - Modified classpaths
+3751f0a,Kunal Gupta,5 weeks ago,Validity fully functional -Added Event for removal of invalid entries.
+fa9b825,Kunal Sikri,5 weeks ago,Shifted category to correct table
+fd6ed1d,Kunal Gupta,5 weeks ago,Changes to Utility functions
+9662bd1,Kunal Sikri,5 weeks ago,Added validity table
+2e717f4,Kunal Gupta,5 weeks ago,Improved SQL functionality
+fb82354,Kunal Sikri,6 weeks ago,resolved validity error
+89eea1a,Kunal Sikri,6 weeks ago,added validity in databse
+eaed2ab,Kunal Gupta,6 weeks ago,Added Location Functionality and Validity in UI
+8002dd2,Kunal Sikri,6 weeks ago,database changes
+cba2d40,Kunal Gupta,6 weeks ago,Added Gate number, location
+dfff99a,Kunal Gupta,6 weeks ago,Added Location in New and Print
+822574a,Kunal Gupta,6 weeks ago,Bug fixes and changed UID to VID.
+bcad8e4,Kunal Gupta,6 weeks ago,New Layout for Card printing! - Orientation changed to landscape from potrait - Removed DOB to be searched in Old-Visitor Checkin - Added Validity and Location Labels (Implementation Pending)
+21012c5,Kunal Gupta,8 weeks ago,Fixed bug with Image not updating for old user -when capturing from webcam
+68fe66d,Kunal Gupta,8 weeks ago,Webcam Capture Window captures photo in color.
+40f8fd5,Kunal Gupta,9 weeks ago,Fixed issues - Changed font for main screen header - Fixed cancel not working when Checkin Old User opens
+65b4bd8,Kunal Gupta,9 weeks ago,Checkin New User and Old User fully functional - Old user can update info from Checkin Old User while checking in
+e760c6e,Kunal Gupta,9 weeks ago,User Photo getting saved as '9 digit UUID'.jpg
+448398e,Kunal Gupta,9 weeks ago,Checkin NewUser Fully Working - Image saved in new Directory with UUID.jpg
+42a6002,Kunal Sikri,9 weeks ago,- modified database
+41fa06d,Kunal Gupta,9 weeks ago,Added Utility for ResultSet to Visitor
+6d49e97,Kunal Sikri,9 weeks ago,- Modified database - Connection file added
+a2c9d38,Kunal Gupta,9 weeks ago,Removed background color while printing,
+a930fd7,Kunal Gupta,9 weeks ago,Added Paper Size in Print and other fixes - Added Stylesheet to all Scenes (Forgot to link :P )
+9e57e88,Mainak Biswas,9 weeks ago,Moved Database to database folder.
+bf29fc5,Kunal Gupta,9 weeks ago,Added Print UI for A4 Printing - Fixed default values and tabs in address - Fixed navigation with tabs - Removed temporary data on checkin
+0517ef3,Kunal Gupta,9 weeks ago,Added verification/sanitation to Checkin New User - Entry of Details working with verification/sanitation (without DB) - Cleaned project working area
+04ead4c,Kunal Gupta,9 weeks ago,New User Functionality Added (without DB) - Along with Image Capture.
+1ad902d,Kunal Gupta,9 weeks ago,Changed package name
+e29a7b9,Kunal Sikri,9 weeks ago,Added database
+7e064e6,Kunal Gupta,9 weeks ago,Update README.md
+d864273,Kunal Gupta,9 weeks ago,Fixed Go on Main getting Disabled on checkout
+f889c74,Kunal Gupta,9 weeks ago,Merging Prevous commits
+4ef791e,Kunal Gupta,9 weeks ago,Added initial Main Screen when the App starts -With working controls and exceptions
+69f9922,Kunal Gupta,9 weeks ago,Added inital UI FXML
+fddfcf6,soulshifter,3 months ago,Add files via upload
+b66618d,Kunal Sikri,3 months ago,Removed temporary files from repo
+d354120,Kunal Gupta,3 months ago,Removed extra folder
+856b04b,Kunal Gupta,3 months ago,Added example code for Webcam and Image capture
+4caa983,Kunal Gupta,3 months ago,Added Abstract SRS
+9f3f341,Kunal Gupta,3 months ago,Initial commit

@@ -64,11 +64,29 @@
                               <RadioButton mnemonicParsing="false" text="Female" toggleGroup="$gender" />
                            </children>
                         </HBox>
-                        <DatePicker fx:id="dateOfBirth" maxWidth="1.7976931348623157E308" promptText="01/01/1990" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                        <Label text="Date of Birth" GridPane.rowIndex="2">
+                        <Label text="Age" GridPane.rowIndex="2">
                            <font>
                               <Font name="System Bold" size="15.0" />
                            </font></Label>
+                        <HBox alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                           <children>
+                              <RadioButton mnemonicParsing="false" prefHeight="21.0" prefWidth="0.0" text="dob" textFill="TRANSPARENT">
+                                 <HBox.margin>
+                                    <Insets right="-22.0" />
+                                 </HBox.margin>
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="dobToggle" />
+                                 </toggleGroup>
+                              </RadioButton>
+                              <DatePicker fx:id="dateOfBirth" minWidth="0.0" promptText="01/01/1990" />
+                              <RadioButton mnemonicParsing="false" prefHeight="21.0" prefWidth="0.0" text="age" textFill="TRANSPARENT" toggleGroup="$dobToggle">
+                                 <HBox.margin>
+                                    <Insets right="-22.0" />
+                                 </HBox.margin>
+                              </RadioButton>
+                              <TextField fx:id="ageBox" minWidth="0.0" promptText="Age in Years..." />
+                           </children>
+                        </HBox>
                         <Label text="Contact Number" GridPane.rowIndex="3">
                            <font>
                               <Font name="System Bold" size="15.0" />

@@ -45,7 +45,11 @@ public class NewUserController implements Initializable {
 	@FXML
 	private TextField contactField;
 	@FXML
+	private ToggleGroup dobToggle;
+	@FXML
 	private DatePicker dateOfBirth;
+	@FXML
+	private TextField ageBox;
 	@FXML
 	private TextArea addressField;
 	@FXML
@@ -70,7 +74,7 @@ public class NewUserController implements Initializable {
 		correct&=(!nameField.getText().trim().isEmpty());
 		correct&=(!Utils.getToggleText(gender).equals("null"));
 		correct&=(!contactField.getText().trim().isEmpty());
-		correct&=!(dateOfBirth.getValue()==null);
+		correct&=(!(dateOfBirth.getValue()==null)|| !(ageBox.getText().trim().isEmpty()));
 		correct&=(!addressField.getText().trim().isEmpty());
 		correct&=(!Utils.getToggleText(category).equals("null"));
 		correct&=(!purposeField.getText().trim().isEmpty());
@@ -134,7 +138,13 @@ public class NewUserController implements Initializable {
 	@FXML
 	public void reviewAndPrint(ActionEvent event) {
         trimAll();
-		Visitor newVisitor = new Visitor(nameField.getText(), gender, contactField.getText(), dateOfBirth.getValue().toString(), addressField.getText(), category, purposeField.getText());
+        LocalDate dt;
+        if(Utils.getToggleText(dobToggle).equals("dob")){
+        	dt=dateOfBirth.getValue();
+        }
+        else
+        	dt=LocalDate.now().minusYears(Integer.parseInt(ageBox.getText()));
+		Visitor newVisitor = new Visitor(nameField.getText(), gender, contactField.getText(), dt.toString(), addressField.getText(), category, purposeField.getText());
 //		System.out.println(newVisitor);
 		newVisitor.setLocation(locationField.getText());
 		newVisitor.setGateNo(Main.gateNumber);
@@ -200,6 +210,11 @@ public class NewUserController implements Initializable {
 	}
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		dateOfBirth.disableProperty().bind(dobToggle.getToggles().get(1).selectedProperty());
+		ageBox.disableProperty().bind(dobToggle.getToggles().get(0).selectedProperty());
+		dobToggle.selectToggle(dobToggle.getToggles().get(0));
+		
+		
 		PrintUserCardController.insertedInDB=false;
 		nameField.textProperty().addListener(new ChangeListener<String>() {
 			@Override
@@ -306,6 +321,26 @@ public class NewUserController implements Initializable {
 				if(ChronoUnit.DAYS.between(newValue,localDate)<0 || ChronoUnit.YEARS.between(newValue,localDate)>150)
 					dateOfBirth.setValue(localDate);
 			}
+			checkValues();
+		});
+		ageBox.textProperty().addListener(new ChangeListener<String>() {
+			@Override
+			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+				if(!newValue.matches("^\\d*$")){
+					ageBox.setText(oldValue);
+				}
+				else if(newValue.length()>0)
+				{
+					if(Integer.parseInt(newValue)>150){
+						ageBox.setText(oldValue);
+					}
+				}
+				checkValues();
+			}
+		});
+		ageBox.disabledProperty().addListener((o,ov,nv) -> {
+			ageBox.setText("");
+			dateOfBirth.setValue(null);
 			checkValues();
 		});
 	}
